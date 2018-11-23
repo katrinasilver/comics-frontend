@@ -1,0 +1,52 @@
+@charset "utf-8";
+@import "./materialize.scss";
+
+/** Custom Variables **/
+$transition: all .3s ease;
+$black: map-get($shades, 'black');
+
+/** Custom Styles **/
+.material-icons {
+
+  .nav-wrapper a & {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+body {
+  animation: backgroundScroll 60s linear infinite alternate;
+  background:
+  linear-gradient( transparentize($black, .2),  transparentize($black, 0)),
+  url('./../images/covers.jpg') repeat-x;
+  background-position: 0 auto;
+  background-size: 0/100% auto;
+
+  .container {
+    min-height: 100vh;
+  }
+
+  .covers {
+    display: flex;
+    position: relative;
+  }
+}
+
+.carousel {
+  align-self: center;
+  overflow: visible;
+
+  .carousel-item {
+    width: 300px;
+    height: auto;
+
+    img {
+      padding-top: 1rem;
+    }
+  }
+}
+
+@keyframes backgroundScroll {
+    0% {background-position: 0 0;}
+    100% {background-position: -80vw 0;}
+}
