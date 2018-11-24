@@ -3,7 +3,7 @@ const { notify, eventListener, starRating } = require('./utils')
 const { set, get, reset } = require('./edit')
 const { read, readOne, remove, update } = require('./reviews')
 
-// const addForm = (container) => container.innerHTML = form()
+const addForm = (container) => container.innerHTML = form()
 
 const nav = document.querySelector('header')
 const bottom = document.querySelector('footer')
@@ -90,5 +90,6 @@ const renderRatings = (container, reviews) => {
 
 module.exports = {
   renderHomepage,
-  renderRatings
+  renderRatings,
+  addForm
 }

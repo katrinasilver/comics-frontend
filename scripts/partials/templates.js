@@ -14,7 +14,7 @@ const header = () => {
             </a>
           </li>
           <li>
-            <a href="./add-ratings.html">
+            <a class="btn red" href="./add-ratings.html">
               <i class="tiny material-icons">star</i> Add Your Rating
             </a>
           </li>
@@ -36,22 +36,40 @@ const footer = () => {
 
 const form = () => {
   return `
-    <form id="form" class="form is-hidden">
-      <div class="field">
-        <label for="post-title" class="label is-1">Title (60 chars. max):
-          <input id="post-title" class="input post-title" type="text" name="title" placeholder="What is this about?">
-        </label>
-        <label for="post-author" class="label is-1">Author (30 chars. max):
-          <input id="post-author" class="input author" type="text" name="author" placeholder="Who are you?">
-        </label>
-        <label for="article" class="label is-1"> Content:
-          <textarea id="article" class="textarea post-body" name="article" placeholder="What's on your mind?"></textarea>
-        </label>
-        <div class="control">
-          <input type="submit" class="save button is-link" value="Add Post">
-          <input type="button" class="cancel-post button is-link" value="Nevermind!">
-        </div>
-        <hr>
+    <div class="comic-image col s12 m5">
+      <img src="https://imgplaceholder.com/450x600/fafafa/eeeeee/fa-image" alt="Cover Image">
+    </div>
+    <form class="form col s12 m6">
+      <h4>Add a Review</h4>
+      <div class="input-field">
+        <input id="title" type="text" data-length="50" class="validate">
+        <label for="title">Title</label>
+        <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
+      </div>
+
+      <div class="input-field">
+        <input id="image_url" type="url" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)" class="validate">
+        <label for="image_url">Image URL</label>
+        <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
+      </div>
+
+      <label for="ratings">Rating</label>
+      <select class="browser-default" id="ratings">
+        <option value="5" selected>Awesome!</option>
+        <option value="4">It's great!</option>
+        <option value="3">It's alright!</option>
+        <option value="2">Could be better!</option>
+        <option value="1">It's awful!</option>
+      </select>
+
+      <div class="input-field">
+        <textarea id="review_comment" class="materialize-textarea" data-length="1000"></textarea>
+        <label for="review_comment">Rating Comment/Review</label>
+      </div>
+
+      <div class="input-field">
+        <input class="btn red" type="submit">
+        <input class="btn red" type="reset">
       </div>
     </form>
   `

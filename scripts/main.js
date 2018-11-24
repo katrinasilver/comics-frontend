@@ -1,11 +1,13 @@
-const { renderHomepage, renderRatings } = require('./partials/render')
+const { renderHomepage, renderRatings, addForm } = require('./partials/render')
 const { create, read } = require('./partials/reviews')
 const { notify, eventListener } = require('./partials/utils')
 
 const collections = document.querySelector('.collection')
 const carousel = document.querySelector('.carousel')
 
-// addForm(document.querySelector('#create'))
+const ratings = document.querySelectorAll('#ratings')
+
+addForm(document.querySelector('.add-rating'))
 
 // eventListener('button.is-link', 'click', (e) => {
 //   e.preventDefault()

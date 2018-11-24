@@ -9,6 +9,19 @@ $white: map-get($shades, 'white');
 $red: map-get($red, 'base');
 $indigo: map-get($indigo, 'base');
 
+$base-font-size: 1rem;
+$heading-scale: .6;
+
+/** heading size function **/
+@for $i from 1 through 6 {
+  h#{$i} {
+    color: darken($indigo, 10);
+    font: $base-font-size + $heading-scale * (6 - $i) $headline;
+    line-height: $base-font-size + $heading-scale * (6);
+    text-shadow: 2px 2px 0px lighten($indigo, 30);
+  }
+}
+
 /** Custom Styles **/
 header {
 
@@ -87,20 +100,21 @@ body {
   margin-bottom: 0;
   padding-top: 1rem;
 
-  h3 {
-    background: lighten($indigo, 45);
-    font: 3rem $headline;
-    color: $indigo;
-    line-height: 4rem;
-    text-align: center;
-    text-shadow: 2px 2px 0px lighten($indigo, 30);
-  }
-
   .more-reviews {
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
   }
+
+  h3 {
+    background: lighten($indigo, 45);
+    line-height: 4rem;
+    text-align: center;
+  }
+}
+
+.add-rating {
+  margin: 2rem auto;
 }
 
 img {
@@ -117,6 +131,10 @@ img {
   .collection-item & {
     width: auto;
     max-height: 120px;
+  }
+
+  .add-rating & {
+    padding: 2rem 1rem 1.5rem;
   }
 }
 
@@ -145,13 +163,6 @@ img {
   .nav-wrapper a & {
     display: inline-block;
     vertical-align: top;
-  }
-
-  .collection-item &,
-  .card-content & {
-    color: $red;
-    text-fill-color: transparent;
-    background-clip: text;
   }
 }
 
