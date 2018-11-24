@@ -1,50 +1,34 @@
 @charset "utf-8";
 @import "./materialize.scss";
-@import url('https://fonts.googleapis.com/css?family=Bangers');
+@import url('https://fonts.googleapis.com/css?family=Bangers|Nunito:600');
 
 /** Custom Variables **/
-$transition: all .3s ease;
 $headline: 'Bangers', sans-serif;
 $black: map-get($shades, 'black');
 $white: map-get($shades, 'white');
 $red: map-get($red, 'base');
-$indigo-dark: map-get($indigo, 'darken-3');
-$green: map-get($green, 'darken-3');
+$indigo: map-get($indigo, 'base');
 
 /** Custom Styles **/
 header {
 
   .brand-logo {
-    font-size: 3.5rem;
-    font-family: $headline;
-  }
-}
-
-.material-icons {
-
-  .card-action &,
-  .nav-wrapper a & {
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  .card-content & {
-    color: $red;
-    text-fill-color: transparent;
-    background-clip: text;
+    font: 3.5rem $headline;
+    line-height: 4.5rem;
+    text-shadow: 3px 3px 0px darken($indigo, 20);
   }
 }
 
 body {
+  background: linear-gradient( transparentize($black, .2),  transparentize($black, 0)),
+  url('./../images/covers.jpg') repeat-x;
+  background-position: 0 auto;
+  background-size: 0/100% auto;
+  font-family: 'Nunito', sans-serif;
   min-height: 100vh;
 
-  &.home {
+  &.scroller {
     animation: backgroundScroll 60s linear infinite alternate;
-    background:
-    linear-gradient( transparentize($black, .2),  transparentize($black, 0)),
-    url('./../images/covers.jpg') repeat-x;
-    background-position: 0 auto;
-    background-size: 0/100% auto;
   }
 }
 
@@ -54,10 +38,11 @@ body {
   perspective: 300px;
 
   .card:first-child:before {
-    background: $indigo-dark;
+    background: $red;
+    border: 3px solid darken($red, 20);
     box-shadow: 1px 1px 3px transparentize($black, .2);
     color: $white;
-    content: 'Recently Added';
+    content: 'Freshest Pick!';
     display: block;
     font: 1.75rem $headline;
     left: -10px;
@@ -73,10 +58,11 @@ body {
     width: 100%;
 
     .rating {
+      border: 3px solid darken($red, 15);
       bottom: auto;
       top: -28px;
       font: 1.5rem $headline;
-      line-height: 3.75rem;
+      line-height: 3.5rem;
     }
   }
 }
@@ -85,6 +71,11 @@ body {
 
   .card-title {
     font: 1.5rem $headline;
+    color: $indigo;
+
+    .carousel & {
+      font-size: 2rem;
+    }
   }
 
   .card-stack {
@@ -97,15 +88,18 @@ body {
   padding-top: 1rem;
 
   h3 {
+    background: lighten($indigo, 45);
     font: 3rem $headline;
-    color: $indigo-dark;
+    color: $indigo;
     line-height: 4rem;
     text-align: center;
+    text-shadow: 2px 2px 0px lighten($indigo, 30);
   }
 
   .more-reviews {
-    align-items: center;
+    align-items: flex-end;
     display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -118,6 +112,46 @@ img {
 
   .more-reviews & {
     width: 100%;
+  }
+
+  .collection-item & {
+    width: auto;
+    max-height: 120px;
+  }
+}
+
+.collection {
+  margin-top: 2rem;
+
+  .collection-item.avatar {
+    display: flex;
+    padding: 1rem;
+
+    .title {
+      color: $indigo;
+      font: 1.75rem $headline;
+    }
+
+    p {
+      margin: .5rem 0;
+    }
+  }
+
+}
+
+.material-icons {
+
+  .card-action &,
+  .nav-wrapper a & {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .collection-item &,
+  .card-content & {
+    color: $red;
+    text-fill-color: transparent;
+    background-clip: text;
   }
 }
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Bangers");
+@import url("https://fonts.googleapis.com/css?family=Bangers|Nunito:600");
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -3783,6 +3783,92 @@ button.btn-floating {
 .btn-block {
   display: block; }
 
+/*!
+ * Waves v0.6.0
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
+ */
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  transition: .3s ease-out; }
+  .waves-effect .waves-ripple {
+    position: absolute;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.7s ease-out;
+    transition-property: transform, opacity;
+    transform: scale(0);
+    pointer-events: none; }
+  .waves-effect.waves-light .waves-ripple {
+    background-color: rgba(255, 255, 255, 0.45); }
+  .waves-effect.waves-red .waves-ripple {
+    background-color: rgba(244, 67, 54, 0.7); }
+  .waves-effect.waves-yellow .waves-ripple {
+    background-color: rgba(255, 235, 59, 0.7); }
+  .waves-effect.waves-orange .waves-ripple {
+    background-color: rgba(255, 152, 0, 0.7); }
+  .waves-effect.waves-purple .waves-ripple {
+    background-color: rgba(156, 39, 176, 0.7); }
+  .waves-effect.waves-green .waves-ripple {
+    background-color: rgba(76, 175, 80, 0.7); }
+  .waves-effect.waves-teal .waves-ripple {
+    background-color: rgba(0, 150, 136, 0.7); }
+  .waves-effect input[type="button"], .waves-effect input[type="reset"], .waves-effect input[type="submit"] {
+    border: 0;
+    font-style: normal;
+    font-size: inherit;
+    text-transform: inherit;
+    background: none; }
+  .waves-effect img {
+    position: relative;
+    z-index: -1; }
+
+.waves-notransition {
+  transition: none !important; }
+
+.waves-circle {
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); }
+
+.waves-input-wrapper {
+  border-radius: 0.2em;
+  vertical-align: bottom; }
+  .waves-input-wrapper .waves-button-input {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1; }
+
+.waves-circle {
+  text-align: center;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 50%;
+  -webkit-mask-image: none; }
+
+.waves-block {
+  display: block; }
+
+/* Firefox Bug: link not triggered */
+.waves-effect .waves-ripple {
+  z-index: -1; }
+
 .carousel {
   overflow: hidden;
   position: relative;
@@ -3847,170 +3933,32 @@ button.btn-floating {
   .carousel .carousel-item:not(.active) .materialboxed {
     pointer-events: none; }
 
-/* Modal */
-.datepicker-modal {
-  max-width: 325px;
-  min-width: 300px;
-  max-height: none; }
-
-.datepicker-container.modal-content {
-  display: flex;
-  flex-direction: column;
-  padding: 0; }
-
-.datepicker-controls {
-  display: flex;
-  justify-content: space-between;
-  width: 280px;
-  margin: 0 auto; }
-  .datepicker-controls .selects-container {
-    display: flex; }
-  .datepicker-controls .select-wrapper input {
-    border-bottom: none;
-    text-align: center;
-    margin: 0; }
-    .datepicker-controls .select-wrapper input:focus {
-      border-bottom: none; }
-  .datepicker-controls .select-wrapper .caret {
-    display: none; }
-  .datepicker-controls .select-year input {
-    width: 50px; }
-  .datepicker-controls .select-month input {
-    width: 70px; }
-
-.month-prev, .month-next {
-  margin-top: 4px;
-  cursor: pointer;
-  background-color: transparent;
-  border: none; }
-
-/* Date Display */
-.datepicker-date-display {
-  flex: 1 auto;
-  background-color: #26a69a;
-  color: #fff;
-  padding: 20px 22px;
-  font-weight: 500; }
-  .datepicker-date-display .year-text {
-    display: block;
-    font-size: 1.5rem;
-    line-height: 25px;
-    color: rgba(255, 255, 255, 0.7); }
-  .datepicker-date-display .date-text {
-    display: block;
-    font-size: 2.8rem;
-    line-height: 47px;
-    font-weight: 500; }
-
-/* Calendar */
-.datepicker-calendar-container {
-  flex: 2.5 auto; }
-
-.datepicker-table {
-  width: 280px;
-  font-size: 1rem;
-  margin: 0 auto; }
-  .datepicker-table thead {
-    border-bottom: none; }
-  .datepicker-table th {
-    padding: 10px 5px;
-    text-align: center; }
-  .datepicker-table tr {
-    border: none; }
-  .datepicker-table abbr {
-    text-decoration: none;
-    color: #999; }
-  .datepicker-table td {
-    border-radius: 50%;
-    padding: 0; }
-    .datepicker-table td.is-today {
-      color: #26a69a; }
-    .datepicker-table td.is-selected {
-      background-color: #26a69a;
-      color: #fff; }
-    .datepicker-table td.is-outside-current-month, .datepicker-table td.is-disabled {
-      color: rgba(0, 0, 0, 0.3);
-      pointer-events: none; }
-
-.datepicker-day-button {
-  background-color: transparent;
-  border: none;
-  line-height: 38px;
-  display: block;
-  width: 100%;
-  border-radius: 50%;
-  padding: 0 5px;
-  cursor: pointer;
-  color: inherit; }
-  .datepicker-day-button:focus {
-    background-color: rgba(43, 161, 150, 0.25); }
-
-/* Footer */
-.datepicker-footer {
-  width: 280px;
-  margin: 0 auto;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: space-between; }
-
-.datepicker-cancel,
-.datepicker-clear,
-.datepicker-today,
-.datepicker-done {
-  color: #26a69a;
-  padding: 0 1rem; }
-
-.datepicker-clear {
-  color: #F44336; }
-
-/* Media Queries */
-@media only screen and (min-width: 601px) {
-  .datepicker-modal {
-    max-width: 625px; }
-  .datepicker-container.modal-content {
-    flex-direction: row; }
-  .datepicker-date-display {
-    flex: 0 1 270px; }
-  .datepicker-controls,
-  .datepicker-table,
-  .datepicker-footer {
-    width: 320px; }
-  .datepicker-day-button {
-    line-height: 44px; } }
-
 /** Custom Variables **/
 /** Custom Styles **/
 header .brand-logo {
-  font-size: 3.5rem;
-  font-family: "Bangers", sans-serif; }
-
-.card-action .material-icons,
-.nav-wrapper a .material-icons {
-  display: inline-block;
-  vertical-align: top; }
-
-.card-content .material-icons {
-  color: #F44336;
-  text-fill-color: transparent;
-  background-clip: text; }
+  font: 3.5rem "Bangers", sans-serif;
+  line-height: 4.5rem;
+  text-shadow: 3px 3px 0px #252f69; }
 
 body {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), black), url("./../images/covers.jpg") repeat-x;
+  background-position: 0 auto;
+  background-size: 0/100% auto;
+  font-family: 'Nunito', sans-serif;
   min-height: 100vh; }
-  body.home {
-    animation: backgroundScroll 60s linear infinite alternate;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), black), url("./../images/covers.jpg") repeat-x;
-    background-position: 0 auto;
-    background-size: 0/100% auto; }
+  body.scroller {
+    animation: backgroundScroll 60s linear infinite alternate; }
 
 .carousel {
   margin: 3rem auto;
   overflow: visible;
   perspective: 300px; }
   .carousel .card:first-child:before {
-    background: #283593;
+    background: #F44336;
+    border: 3px solid #ba160a;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     color: #FFFFFF;
-    content: 'Recently Added';
+    content: 'Freshest Pick!';
     display: block;
     font: 1.75rem "Bangers", sans-serif;
     left: -10px;
@@ -4023,13 +3971,17 @@ body {
     max-width: 50%;
     width: 100%; }
     .carousel .carousel-item .rating {
+      border: 3px solid #d2190b;
       bottom: auto;
       top: -28px;
       font: 1.5rem "Bangers", sans-serif;
-      line-height: 3.75rem; }
+      line-height: 3.5rem; }
 
 .card .card-title {
-  font: 1.5rem "Bangers", sans-serif; }
+  font: 1.5rem "Bangers", sans-serif;
+  color: #3f51b5; }
+  .carousel .card .card-title {
+    font-size: 2rem; }
 
 .card .card-stack {
   width: 100%; }
@@ -4038,13 +3990,16 @@ body {
   margin-bottom: 0;
   padding-top: 1rem; }
   .reviews h3 {
+    background: #e4e7f6;
     font: 3rem "Bangers", sans-serif;
-    color: #283593;
+    color: #3f51b5;
     line-height: 4rem;
-    text-align: center; }
+    text-align: center;
+    text-shadow: 2px 2px 0px #abb4e2; }
   .reviews .more-reviews {
-    align-items: center;
-    display: flex; }
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap; }
 
 .card.horizontal .card-image img {
   max-width: 300px;
@@ -4052,6 +4007,32 @@ body {
 
 .more-reviews img {
   width: 100%; }
+
+.collection-item img {
+  width: auto;
+  max-height: 120px; }
+
+.collection {
+  margin-top: 2rem; }
+  .collection .collection-item.avatar {
+    display: flex;
+    padding: 1rem; }
+    .collection .collection-item.avatar .title {
+      color: #3f51b5;
+      font: 1.75rem "Bangers", sans-serif; }
+    .collection .collection-item.avatar p {
+      margin: .5rem 0; }
+
+.card-action .material-icons,
+.nav-wrapper a .material-icons {
+  display: inline-block;
+  vertical-align: top; }
+
+.collection-item .material-icons,
+.card-content .material-icons {
+  color: #F44336;
+  text-fill-color: transparent;
+  background-clip: text; }
 
 .page-footer {
   padding-top: 0; }

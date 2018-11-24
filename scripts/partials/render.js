@@ -1,35 +1,36 @@
-const { header, footer, form, carouselCover, moreReviews, editRating } = require('./templates')
+const { header, footer, form, carouselCover, collection, moreReviews, editRating } = require('./templates')
 const { notify, eventListener, starRating } = require('./utils')
 const { set, get, reset } = require('./edit')
 const { read, readOne, remove, update } = require('./reviews')
 
+// const addForm = (container) => container.innerHTML = form()
 
 const nav = document.querySelector('header')
 const bottom = document.querySelector('footer')
 nav.innerHTML = header()
 bottom.innerHTML = footer()
 
-// const addForm = (container) => container.innerHTML = form()
-
-const renderHomepage = (reviews) => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-  const carousel = document.querySelector('.carousel')
-  const review = document.querySelector('.more-reviews')
-
-  let reviewContents = reviews.map(r => moreReviews(r))
+const renderHomepage = (container, reviews) => {
   let carouselItems = reviews.map(r => carouselCover(r))
+  container.innerHTML = ''
+  container.innerHTML = carouselItems.reverse().slice(0, 3).join('\n')
 
+  const review = document.querySelector('.more-reviews')
+  let reviewContents = reviews.map(r => moreReviews(r))
   review.innerHTML = ''
-  review.innerHTML = reviewContents.slice(1, -1).join('\n')
-  carousel.innerHTML = ''
-  carousel.innerHTML = carouselItems.reverse().slice(0, 3).join('\n')
+  review.innerHTML = reviewContents.reverse().slice(3, -1).join('\n')
 
-  if (!isMobile) {
-    M.Carousel.init(carousel)
-  } else {
-    const cards = document.querySelectorAll('.card')
-    cards.forEach(c => c.classList.remove('carousel-item'))
-  }
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  const cards = document.querySelectorAll('.card')
+  if (!isMobile) M.Carousel.init(container)
+  else cards.forEach(c => c.classList.remove('carousel-item'))
+}
+
+
+const renderRatings = (container, reviews) => {
+  let collected = reviews.map(r => collection(r)).reverse()
+  container.innerHTML = ''
+  container.innerHTML = collected.join('\n')
 
   // eventListener('.delete-post', 'click', (e) => {
   //   e.preventDefault()
@@ -87,4 +88,7 @@ const renderHomepage = (reviews) => {
   // })
 }
 
-module.exports = { renderHomepage }
+module.exports = {
+  renderHomepage,
+  renderRatings
+}

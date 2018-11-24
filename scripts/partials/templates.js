@@ -10,12 +10,12 @@ const header = () => {
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
             <a href="./ratings.html">
-              <i class="tiny material-icons">folder_special</i> See All Ratings
+              <i class="tiny material-icons">folder_special</i> Current Ratings
             </a>
           </li>
           <li>
             <a href="./add-ratings.html">
-              <i class="tiny material-icons">star</i> Add a Rating
+              <i class="tiny material-icons">star</i> Add Your Rating
             </a>
           </li>
         </ul>
@@ -65,7 +65,7 @@ const carouselCover = ({ id, title, url, rating, review }) => {
       </div>
       <div class="card-stack">
         <div class="card-content white">
-        <span class="card-title activator grey-text text-darken-4">${ title }</span>
+        <span class="card-title activator">${ title }</span>
         </div>
         <div class="card-action">
           <span class="rating red btn-floating btn-large halfway-fab">${ rating }/5</span>
@@ -76,19 +76,43 @@ const carouselCover = ({ id, title, url, rating, review }) => {
   `
 }
 
-const moreReviews = ({ id, title, url, rating }) => {
+const moreReviews = ({ id, title, url, rating, review }) => {
   return `
-    <div class="col s12 m3">
-      <div class="card" data-id="${ id }">
-        <div class="card-image">
-          <img src="${ url }" alt="${ title }">
-        </div>
-        <div class="card-content">
-          <p class="card-title">${ title }</p>
-          <p>${ starRating(rating) }</p>
-        </div>
+  <div class="col s12 m3">
+    <div class="card" data-id="${ id }">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="${ url }" alt="${title }">
       </div>
+      <div class="card-content">
+        <span class="card-title activator">${ title }<i class="material-icons right">more_vert</i></span>
+        <p>${ starRating(rating) }</p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title">The Verdict<i class="material-icons right">close</i></span>
+        <p>${ review }</p>
+      </div>
+    </div>
+
     </div>`
+}
+
+const collection = ({ id, title, url, rating, review }) => {
+  return `
+    <li class="collection-item avatar row" data-id="${ id }">
+      <div class="col s12 m1">
+        <img src="${ url}" alt="${title }">
+      </div>
+      <div class="details col s12 m9">
+        <span class="title">${ title }</span>
+        <p>${ review }</p>
+        <p>${ starRating(rating) }</p>
+      </div>
+      <div class="actions col s12 m1">
+        <a href="#" class="edit"><i class="material-icons">edit</i></a>
+        <a href="#" class="delete"><i class="material-icons">delete</i></a>
+      </div>
+    </li>
+  `
 }
 
 const editRating = ({ id, author, title, content }) => {
@@ -116,7 +140,12 @@ const editRating = ({ id, author, title, content }) => {
   `
 }
 
-const recentPost = ({ id, title }) =>
- ` <li class="post-link" data-pid="${ id }"><a class="link">${ title }</a></li>`
-
-module.exports = { header, footer, form, carouselCover, moreReviews, editRating }
+module.exports = {
+  header,
+  footer,
+  form,
+  carouselCover,
+  moreReviews,
+  collection,
+  editRating
+}

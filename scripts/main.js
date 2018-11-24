@@ -1,6 +1,9 @@
-const { renderHomepage } = require('./partials/render')
+const { renderHomepage, renderRatings } = require('./partials/render')
 const { create, read } = require('./partials/reviews')
 const { notify, eventListener } = require('./partials/utils')
+
+const collections = document.querySelector('.collection')
+const carousel = document.querySelector('.carousel')
 
 // addForm(document.querySelector('#create'))
 
@@ -37,4 +40,10 @@ const { notify, eventListener } = require('./partials/utils')
 //   e.target.reset()
 // })
 
-read().then(response => renderHomepage(response.data))
+if (carousel) {
+  read().then(response => renderHomepage(carousel, response.data))
+}
+
+if (collections) {
+  read().then(response => renderRatings(collections, response.data))
+}
