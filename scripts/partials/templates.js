@@ -1,9 +1,11 @@
+const { starRating } = require('./utils')
+
 const header = () => {
   return `
     <nav class="indigo">
       <div class="nav-wrapper container">
         <a href="/" class="brand-logo">
-          Comic<span class="bold">Score</span> <i class="material-icons">local_activity</i>
+          ComicScore
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
@@ -11,7 +13,7 @@ const header = () => {
               <i class="tiny material-icons">folder_special</i> See All Ratings
             </a>
           </li>
-          <li class="active">
+          <li>
             <a href="./add-ratings.html">
               <i class="tiny material-icons">star</i> Add a Rating
             </a>
@@ -26,7 +28,7 @@ const footer = () => {
   return `
     <div class="container footer-copyright">
       <p>
-        <strong>&copy; 2018 ComicScore</strong> by <a href="https://katrina.surge.sh" target="_blank">Katrina Banana</a>
+        <strong>&copy; 2018 ComicScore</strong> by <a href="https://katrina.surge.sh" target="_blank">Katrina Agustin</a>
       </p>
     </div>
   `
@@ -55,18 +57,38 @@ const form = () => {
   `
 }
 
-const newRating = ({ id, date, author, title, content }) => {
+const carouselCover = ({ id, title, url, rating, review }) => {
   return `
-    <article class="post" data-id="${ id }">
-      <h2 class="title has-text-danger">${ title }</h2>
-      <div class="date has-text-grey">date: ${ date }</div>
-      <div class="author has-text-grey">posted by: ${ author }</div>
-      <div class="content"><p>${ content }</p></div>
-      <a class="edit-post has-text-primary">Edit</a>
-      <a class="delete-post has-text-primary">Delete</a>
-      <hr>
-    </article>
+    <div class="card horizontal carousel-item" data-id=${ id }>
+      <div class="card-image">
+        <img src="${ url }" alt="${ title }">
+      </div>
+      <div class="card-stack">
+        <div class="card-content white">
+        <span class="card-title activator grey-text text-darken-4">${ title }</span>
+        </div>
+        <div class="card-action">
+          <span class="rating red btn-floating btn-large halfway-fab">${ rating }/5</span>
+          <p>${ review }</p>
+        </div>
+      </div>
+    </div>
   `
+}
+
+const moreReviews = ({ id, title, url, rating }) => {
+  return `
+    <div class="col s12 m3">
+      <div class="card" data-id="${ id }">
+        <div class="card-image">
+          <img src="${ url }" alt="${ title }">
+        </div>
+        <div class="card-content">
+          <p class="card-title">${ title }</p>
+          <p>${ starRating(rating) }</p>
+        </div>
+      </div>
+    </div>`
 }
 
 const editRating = ({ id, author, title, content }) => {
@@ -97,4 +119,4 @@ const editRating = ({ id, author, title, content }) => {
 const recentPost = ({ id, title }) =>
  ` <li class="post-link" data-pid="${ id }"><a class="link">${ title }</a></li>`
 
-module.exports = { header, footer, form, newRating, editRating }
+module.exports = { header, footer, form, carouselCover, moreReviews, editRating }

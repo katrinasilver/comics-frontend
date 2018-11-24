@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Bangers");
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -3979,29 +3980,81 @@ button.btn-floating {
 
 /** Custom Variables **/
 /** Custom Styles **/
+header .brand-logo {
+  font-size: 3.5rem;
+  font-family: "Bangers", sans-serif; }
+
+.card-action .material-icons,
 .nav-wrapper a .material-icons {
   display: inline-block;
   vertical-align: top; }
 
+.card-content .material-icons {
+  color: #F44336;
+  text-fill-color: transparent;
+  background-clip: text; }
+
 body {
-  animation: backgroundScroll 60s linear infinite alternate;
-  background: linear-gradient(rgba(0, 0, 0, 0.8), black), url("./../images/covers.jpg") repeat-x;
-  background-position: 0 auto;
-  background-size: 0/100% auto; }
-  body .container {
-    min-height: 100vh; }
-  body .covers {
-    display: flex;
-    position: relative; }
+  min-height: 100vh; }
+  body.home {
+    animation: backgroundScroll 60s linear infinite alternate;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), black), url("./../images/covers.jpg") repeat-x;
+    background-position: 0 auto;
+    background-size: 0/100% auto; }
 
 .carousel {
-  align-self: center;
-  overflow: visible; }
+  margin: 3rem auto;
+  overflow: visible;
+  perspective: 300px; }
+  .carousel .card:first-child:before {
+    background: #283593;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    color: #FFFFFF;
+    content: 'Recently Added';
+    display: block;
+    font: 1.75rem "Bangers", sans-serif;
+    left: -10px;
+    padding: .5rem .75rem;
+    position: absolute;
+    bottom: 30px;
+    z-index: 1000; }
   .carousel .carousel-item {
-    width: 300px;
-    height: auto; }
-    .carousel .carousel-item img {
-      padding-top: 1rem; }
+    height: auto;
+    max-width: 50%;
+    width: 100%; }
+    .carousel .carousel-item .rating {
+      bottom: auto;
+      top: -28px;
+      font: 1.5rem "Bangers", sans-serif;
+      line-height: 3.75rem; }
+
+.card .card-title {
+  font: 1.5rem "Bangers", sans-serif; }
+
+.card .card-stack {
+  width: 100%; }
+
+.reviews {
+  margin-bottom: 0;
+  padding-top: 1rem; }
+  .reviews h3 {
+    font: 3rem "Bangers", sans-serif;
+    color: #283593;
+    line-height: 4rem;
+    text-align: center; }
+  .reviews .more-reviews {
+    align-items: center;
+    display: flex; }
+
+.card.horizontal .card-image img {
+  max-width: 300px;
+  height: 400px; }
+
+.more-reviews img {
+  width: 100%; }
+
+.page-footer {
+  padding-top: 0; }
 
 @keyframes backgroundScroll {
   0% {

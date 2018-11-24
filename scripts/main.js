@@ -1,7 +1,6 @@
-const { addForm, renderPost } = require('./partials/render')
-const { create, read } = require('./partials/posts')
+const { renderHomepage } = require('./partials/render')
+const { create, read } = require('./partials/reviews')
 const { notify, eventListener } = require('./partials/utils')
-
 
 // addForm(document.querySelector('#create'))
 
@@ -38,4 +37,4 @@ const { notify, eventListener } = require('./partials/utils')
 //   e.target.reset()
 // })
 
-// read().then(response => renderPost(response.data))
+read().then(response => renderHomepage(response.data))

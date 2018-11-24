@@ -1,49 +1,128 @@
 @charset "utf-8";
 @import "./materialize.scss";
+@import url('https://fonts.googleapis.com/css?family=Bangers');
 
 /** Custom Variables **/
 $transition: all .3s ease;
+$headline: 'Bangers', sans-serif;
 $black: map-get($shades, 'black');
+$white: map-get($shades, 'white');
+$red: map-get($red, 'base');
+$indigo-dark: map-get($indigo, 'darken-3');
+$green: map-get($green, 'darken-3');
 
 /** Custom Styles **/
+header {
+
+  .brand-logo {
+    font-size: 3.5rem;
+    font-family: $headline;
+  }
+}
+
 .material-icons {
 
+  .card-action &,
   .nav-wrapper a & {
     display: inline-block;
     vertical-align: top;
   }
+
+  .card-content & {
+    color: $red;
+    text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 body {
-  animation: backgroundScroll 60s linear infinite alternate;
-  background:
-  linear-gradient( transparentize($black, .2),  transparentize($black, 0)),
-  url('./../images/covers.jpg') repeat-x;
-  background-position: 0 auto;
-  background-size: 0/100% auto;
+  min-height: 100vh;
 
-  .container {
-    min-height: 100vh;
-  }
-
-  .covers {
-    display: flex;
-    position: relative;
+  &.home {
+    animation: backgroundScroll 60s linear infinite alternate;
+    background:
+    linear-gradient( transparentize($black, .2),  transparentize($black, 0)),
+    url('./../images/covers.jpg') repeat-x;
+    background-position: 0 auto;
+    background-size: 0/100% auto;
   }
 }
 
 .carousel {
-  align-self: center;
+  margin: 3rem auto;
   overflow: visible;
+  perspective: 300px;
+
+  .card:first-child:before {
+    background: $indigo-dark;
+    box-shadow: 1px 1px 3px transparentize($black, .2);
+    color: $white;
+    content: 'Recently Added';
+    display: block;
+    font: 1.75rem $headline;
+    left: -10px;
+    padding: .5rem .75rem;
+    position: absolute;
+    bottom: 30px;
+    z-index: 1000;
+  }
 
   .carousel-item {
-    width: 300px;
     height: auto;
+    max-width: 50%;
+    width: 100%;
 
-    img {
-      padding-top: 1rem;
+    .rating {
+      bottom: auto;
+      top: -28px;
+      font: 1.5rem $headline;
+      line-height: 3.75rem;
     }
   }
+}
+
+.card {
+
+  .card-title {
+    font: 1.5rem $headline;
+  }
+
+  .card-stack {
+    width: 100%;
+  }
+}
+
+.reviews {
+  margin-bottom: 0;
+  padding-top: 1rem;
+
+  h3 {
+    font: 3rem $headline;
+    color: $indigo-dark;
+    line-height: 4rem;
+    text-align: center;
+  }
+
+  .more-reviews {
+    align-items: center;
+    display: flex;
+  }
+}
+
+img {
+
+  .card.horizontal .card-image & {
+    max-width: 300px;
+    height: 400px;
+  }
+
+  .more-reviews & {
+    width: 100%;
+  }
+}
+
+.page-footer {
+  padding-top: 0;
 }
 
 @keyframes backgroundScroll {
