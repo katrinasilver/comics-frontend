@@ -6,8 +6,8 @@ const eventListener = (selector, type, fn) => {
 const notify = (container, message, time) => {
   const notice = document.querySelector(container)
   notice.innerHTML = message
-  notice.classList.remove('hide')
-  setTimeout(() => { notice.classList.add('hide') }, time)
+  notice.classList.remove('hidden')
+  setTimeout(() => { notice.classList.add('hidden') }, time)
 }
 
 const starRating = (rating) => {

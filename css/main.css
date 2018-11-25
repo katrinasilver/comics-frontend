@@ -5109,10 +5109,10 @@ header .brand-logo {
   text-shadow: 3px 3px 0px #252f69; }
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.8), black), url("./../images/covers.jpg") repeat-x;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url("./../images/covers.jpg") repeat;
   background-position: 0 auto;
   background-size: 0/100% auto;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   min-height: 100vh; }
   body.scroller {
     animation: backgroundScroll 60s linear infinite alternate; }
@@ -5167,7 +5167,21 @@ body {
     text-align: center; }
 
 .add-rating {
-  margin: 2rem auto; }
+  margin: 2rem auto;
+  min-height: 80vh; }
+  .add-rating .form {
+    padding: 2rem; }
+
+.notice {
+  padding: .5rem;
+  transition: all 0.3s ease; }
+
+.hidden {
+  transition: all 0.3s ease;
+  visibility: hidden; }
+
+.btn.edit, .edit.btn-large, .edit.btn-small, .btn.delete, .delete.btn-large, .delete.btn-small {
+  margin-left: .5rem; }
 
 .card.horizontal .card-image img {
   max-width: 300px;

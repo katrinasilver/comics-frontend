@@ -2,50 +2,36 @@ const { renderHomepage, renderRatings, addForm } = require('./partials/render')
 const { create, read } = require('./partials/reviews')
 const { notify, eventListener } = require('./partials/utils')
 
-const collections = document.querySelector('.collection')
+const addRating = document.querySelector('.add-rating')
+if (addRating) addForm(addRating)
+
+const form = document.querySelector('#form')
+if (form) {
+  eventListener('#image_url', 'input', (e) => {
+    const img = document.querySelector('.comic-image img')
+    img.setAttribute('src', `${e.target.value}`)
+  })
+
+  eventListener('#form', 'submit', (e) => {
+    e.preventDefault()
+
+    const review = {
+      title: e.target.title.value,
+      url: e.target.image_url.value,
+      rating: e.target.ratings.value,
+      review: e.target.review_comment.value
+    }
+
+    create(review)
+      .then(read)
+      .then(response => notify('.notice', 'Your review has been added! Hooray!', 1500))
+      .catch(error => notify('.notice', 'All Fields are Required', 2000)) // NEED TO FIX
+    e.target.reset()
+  })
+}
+
 const carousel = document.querySelector('.carousel')
+if (carousel) read().then(response => renderHomepage(carousel, response.data))
 
-const ratings = document.querySelectorAll('#ratings')
-
-addForm(document.querySelector('.add-rating'))
-
-// eventListener('button.is-link', 'click', (e) => {
-//   e.preventDefault()
-//   document.querySelector('#form').classList.remove('is-hidden')
-// })
-
-// eventListener('.cancel-post', 'click', (e) => {
-//   e.preventDefault()
-//   document.querySelector('#form').classList.add('is-hidden')
-// })
-
-// eventListener('#form', 'submit', (e) => {
-//   e.preventDefault()
-//   e.target.classList.add('is-hidden')
-
-//   const article = {
-//     id: '',
-//     date: '',
-//     author: e.target.author.value,
-//     title: e.target.title.value,
-//     content: e.target.article.value
-//   }
-
-//   create(article)
-//     .then(read)
-//     .then(response => {
-//       renderPost(response.data)
-//       notify('#notice', 'New article posted! Hooray!', 1500)
-//     })
-//     .catch(error => notify('#notice', 'All Fields are Required', 2000))
-
-//   e.target.reset()
-// })
-
-if (carousel) {
-  read().then(response => renderHomepage(carousel, response.data))
-}
-
-if (collections) {
-  read().then(response => renderRatings(collections, response.data))
-}
+const collections = document.querySelector('.collection')
+if (collections) read().then(response => renderRatings(collections, response.data))

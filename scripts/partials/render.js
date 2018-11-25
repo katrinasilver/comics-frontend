@@ -18,7 +18,7 @@ const renderHomepage = (container, reviews) => {
   const review = document.querySelector('.more-reviews')
   let reviewContents = reviews.map(r => moreReviews(r))
   review.innerHTML = ''
-  review.innerHTML = reviewContents.reverse().slice(3, -1).join('\n')
+  review.innerHTML = reviewContents.reverse().slice(3).join('\n')
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   const cards = document.querySelectorAll('.card')
@@ -28,19 +28,19 @@ const renderHomepage = (container, reviews) => {
 
 
 const renderRatings = (container, reviews) => {
-  let collected = reviews.map(r => collection(r)).reverse()
+  // let collected = reviews.map(r => collection(r)).reverse()
+  let collected = reviews.map(r => r.id === get() ? editRating(r) : collection(r)).reverse()
   container.innerHTML = ''
   container.innerHTML = collected.join('\n')
 
-  // eventListener('.delete-post', 'click', (e) => {
-  //   e.preventDefault()
-  //   let id = e.target.parentElement.getAttribute('data-id')
-  //   remove(id)
-  //     .catch(error => notify('#notice', 'Post cannot be deleted!', 2000))
-  //     .finally(() => {
-  //       read().then(response => renderPost(response.data))
-  //     })
-  // })
+  eventListener('.delete', 'click', (e) => {
+    e.preventDefault()
+    let id = e.target.parentElement.getAttribute('data-id')
+    remove(id)
+      .then(read)
+      .then(response => renderRatings(container, response.data))
+      // .catch(error => notify('.notice', 'Post cannot be deleted!', 2000)) NEED TO FIX
+  })
 
   // eventListener('.edit-post', 'click', (e) => {
   //   e.preventDefault()
@@ -49,11 +49,6 @@ const renderRatings = (container, reviews) => {
   //   read().then(response => renderPost(response.data))
   // })
 
-  // eventListener('.cancel', 'click', (e) => {
-  //   e.preventDefault()
-  //   reset()
-    // read(5).then(response => render(response.data))
-  // })
 
   // eventListener('article > form', 'submit', (e) => {
   //   e.preventDefault()

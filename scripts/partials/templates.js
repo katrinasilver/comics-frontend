@@ -14,8 +14,8 @@ const header = () => {
             </a>
           </li>
           <li>
-            <a class="btn red" href="./add-ratings.html">
-              <i class="tiny material-icons">star</i> Add Your Rating
+            <a class="btn waves-effect waves-light red" href="./add-ratings.html">
+              <i class="tiny material-icons">star</i> Start Rating
             </a>
           </li>
         </ul>
@@ -39,36 +39,37 @@ const form = () => {
     <div class="comic-image col s12 m5">
       <img src="https://imgplaceholder.com/450x600/fafafa/eeeeee/fa-image" alt="Cover Image">
     </div>
-    <form class="form col s12 m6">
-      <h4>Add a Review</h4>
+    <form id="form" class="form col s12 m7">
+      <h3>Love it? Hate it? Rate it!</h3>
+      <p class="hidden notice amber center-align">Hello</p>
+
       <div class="input-field">
-        <input id="title" type="text" data-length="50" class="validate">
+        <input id="title" type="text" data-length="50" class="validate" required>
         <label for="title">Title</label>
         <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
       </div>
 
       <div class="input-field">
-        <input id="image_url" type="url" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)" class="validate">
+        <input id="image_url" type="url" pattern="(http:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" required>
         <label for="image_url">Image URL</label>
         <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
       </div>
 
       <label for="ratings">Rating</label>
       <select class="browser-default" id="ratings">
-        <option value="5" selected>Awesome!</option>
-        <option value="4">It's great!</option>
-        <option value="3">It's alright!</option>
-        <option value="2">Could be better!</option>
-        <option value="1">It's awful!</option>
+        <option value="5"selected>Awesome!!!</option>
+        <option value="4">Great!</option>
+        <option value="3">It's alright.</option>
+        <option value="2">Could be better...</option>
+        <option value="1">Just awful!!!</option>
       </select>
-
-      <div class="input-field">
+      <div class="input-field" required>
         <textarea id="review_comment" class="materialize-textarea" data-length="1000"></textarea>
         <label for="review_comment">Rating Comment/Review</label>
       </div>
 
       <div class="input-field">
-        <input class="btn red" type="submit">
+        <input class="btn indigo" type="submit">
         <input class="btn red" type="reset">
       </div>
     </form>
@@ -97,7 +98,7 @@ const carouselCover = ({ id, title, url, rating, review }) => {
 const moreReviews = ({ id, title, url, rating, review }) => {
   return `
   <div class="col s12 m3">
-    <div class="card" data-id="${ id }">
+    <div class="card hoverable" data-id="${ id }">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="${ url }" alt="${title }">
       </div>
@@ -125,15 +126,13 @@ const collection = ({ id, title, url, rating, review }) => {
         <p>${ review }</p>
         <p>${ starRating(rating) }</p>
       </div>
-      <div class="actions col s12 m1">
-        <a href="#" class="edit"><i class="material-icons">edit</i></a>
-        <a href="#" class="delete"><i class="material-icons">delete</i></a>
-      </div>
+      <a class="btn waves-effect waves-light indigo edit">Edit</a>
+      <a class="btn waves-effect waves-light red delete">Delete</a>
     </li>
   `
 }
 
-const editRating = ({ id, author, title, content }) => {
+const editRating = ({ id, title, url, rating, review }) => {
   return `
     <article class="post" data-id="${ id }">
       <form class="form">
