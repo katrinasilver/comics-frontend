@@ -1,6 +1,6 @@
-const { header, footer, form, carouselCover, collection, moreReviews, editRating } = require('./templates')
-const { notify, eventListener, starRating } = require('./utils')
-const { set, get, reset } = require('./edit')
+const { header, footer, form, carouselCover, collection, one, editReview, moreReviews } = require('./templates')
+const { notify, eventListener } = require('./utils')
+const { get, set, reset } = require('./edit')
 const { read, readOne, remove, update } = require('./reviews')
 
 const addForm = (container) => container.innerHTML = form()
@@ -20,67 +20,50 @@ const renderHomepage = (container, reviews) => {
   review.innerHTML = ''
   review.innerHTML = reviewContents.reverse().slice(3).join('\n')
 
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-  const cards = document.querySelectorAll('.card')
-  if (!isMobile) M.Carousel.init(container)
-  else cards.forEach(c => c.classList.remove('carousel-item'))
+  M.Carousel.init(container)
 }
 
-
 const renderRatings = (container, reviews) => {
-  // let collected = reviews.map(r => collection(r)).reverse()
-  let collected = reviews.map(r => r.id === get() ? editRating(r) : collection(r)).reverse()
+  let collected = reviews.map(r => collection(r)).reverse()
+  // let collected = reviews.map(r => r.id === get() ? editReview(r) : collection(r)).reverse()
   container.innerHTML = ''
   container.innerHTML = collected.join('\n')
+
+  eventListener('.detail', 'click', (e) => {
+    e.preventDefault()
+    let id = e.target.parentElement.getAttribute('data-id')
+    readOne(id).then(response => container.innerHTML = one(response.data))
+  })
+
+  eventListener('#edit-form', 'submit', (e) => {
+    e.preventDefault()
+    const id = e.target.parentElement.getAttribute('data-id')
+    const title = e.target.comic_title.value
+    const url = e.target.image_url.value
+    const rating = e.target.review.value
+    const review = e.target.comment.textContent
+
+    update(id, title, url, rating, review)
+      .then((response) => {
+        reset()
+        return read()
+      })
+      .then(response => renderRatings(response.data))
+    console.log(`this function is firing`);
+    // read().then(response => renderRatings(collections, response.data))
+    // .catch(error => notify('.notice', 'exceeded character limit', 2000))
+  })
+
 
   eventListener('.delete', 'click', (e) => {
     e.preventDefault()
     let id = e.target.parentElement.getAttribute('data-id')
     remove(id)
-      .then(read)
-      .then(response => renderRatings(container, response.data))
-      // .catch(error => notify('.notice', 'Post cannot be deleted!', 2000)) NEED TO FIX
+      .catch(error => notify('.notice', 'Rating cannot be deleted!', 2000))
+      .finally(() => {
+        read().then(response => renderRatings(container, response.data))
+      })
   })
-
-  // eventListener('.edit-post', 'click', (e) => {
-  //   e.preventDefault()
-  //   let id = e.target.parentElement.getAttribute('data-id')
-  //   set(id)
-  //   read().then(response => renderPost(response.data))
-  // })
-
-
-  // eventListener('article > form', 'submit', (e) => {
-  //   e.preventDefault()
-  //   const id = e.target.parentElement.getAttribute('data-id')
-  //   const title = e.target.title.value
-  //   const url = e.target.author.value
-  //   const review = e.target.article.value
-
-  //   update(id, title, url, rating, review)
-  //     .then((response) => {
-  //       reset()
-  //       return read()
-  //     })
-  //     .then(response => renderPost(response.data))
-  //     .catch(error => notify('#notice', 'exceeded character limit', 2000))
-  // })
-
-  // eventListener('.post-link .link', 'click', (e) => {
-  //   e.preventDefault()
-  //   const id = e.target.parentElement.getAttribute('data-pid')
-  //   readOne(id)
-  //     .then(response => renderPost(response.data))
-  //     .then(response => {
-  //       let button = document.createElement('button')
-  //       button.classList.add('button', 'view-all')
-  //       button.textContent = 'View all posts'
-  //       postList.appendChild(button)
-
-  //       eventListener('.view-all', 'click', () => window.location.reload(true))
-  //     })
-  //     .catch(error => notify('#notice', 'Post not found', 2000))
-  // })
 }
 
 module.exports = {

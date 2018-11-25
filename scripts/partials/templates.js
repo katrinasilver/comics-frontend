@@ -10,12 +10,12 @@ const header = () => {
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
             <a href="./ratings.html">
-              <i class="tiny material-icons">folder_special</i> Current Ratings
+              <i class="tiny material-icons">favorite</i> Ratings
             </a>
           </li>
           <li>
-            <a class="btn waves-effect waves-light red" href="./add-ratings.html">
-              <i class="tiny material-icons">star</i> Start Rating
+            <a href="./add-ratings.html">
+              <i class="tiny material-icons">add</i> Add New
             </a>
           </li>
         </ul>
@@ -36,12 +36,11 @@ const footer = () => {
 
 const form = () => {
   return `
-    <div class="comic-image col s12 m5">
-      <img src="https://imgplaceholder.com/450x600/fafafa/eeeeee/fa-image" alt="Cover Image">
+    <div class="comic-image valign-wrapper col s12 m5">
+      <img src="https://imgplaceholder.com/450x600/ffffff/eeeeee/fa-image" alt="Cover Image">
     </div>
     <form id="form" class="form col s12 m7">
       <h3>Love it? Hate it? Rate it!</h3>
-      <p class="hidden notice amber center-align">Hello</p>
 
       <div class="input-field">
         <input id="title" type="text" data-length="50" class="validate" required>
@@ -55,23 +54,37 @@ const form = () => {
         <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
       </div>
 
-      <label for="ratings">Rating</label>
-      <select class="browser-default" id="ratings">
-        <option value="5"selected>Awesome!!!</option>
-        <option value="4">Great!</option>
-        <option value="3">It's alright.</option>
-        <option value="2">Could be better...</option>
-        <option value="1">Just awful!!!</option>
-      </select>
-      <div class="input-field" required>
-        <textarea id="review_comment" class="materialize-textarea" data-length="1000"></textarea>
+      <label>
+        <input name="ratings" value="5" type="radio" checked/>
+        <span> <i class="medium material-icons">sentiment_very_satisfied</i> Great</span>
+      </label>
+      <label>
+        <input name="ratings" value="4" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_satisfied</i> Good</span>
+      </label>
+      <label>
+        <input name="ratings" value="3" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_neutral</i> Okay</span>
+      </label>
+      <label>
+        <input name="ratings" value="2" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_dissatisfied</i> Meh...</span>
+      </label>
+      <label>
+        <input name="ratings" value="1" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_very_dissatisfied</i> Awful!</span>
+      </label>
+
+      <div class="input-field">
+        <textarea id="review_comment" class="materialize-textarea" data-length="1000" required></textarea>
         <label for="review_comment">Rating Comment/Review</label>
       </div>
 
       <div class="input-field">
-        <input class="btn indigo" type="submit">
-        <input class="btn red" type="reset">
+        <input class="submit btn indigo" type="submit">
+        <input class="reset btn red" type="reset">
       </div>
+      <p class="hidden notice teal white-text center-align"></p>
     </form>
   `
 }
@@ -88,7 +101,8 @@ const carouselCover = ({ id, title, url, rating, review }) => {
         </div>
         <div class="card-action">
           <span class="rating red btn-floating btn-large halfway-fab">${ rating }/5</span>
-          <p>${ review }</p>
+          <p>${ review.slice(0, 150) }... <a href="./ratings.html" class="red-text">Learn More</a></p>
+
         </div>
       </div>
     </div>
@@ -97,10 +111,10 @@ const carouselCover = ({ id, title, url, rating, review }) => {
 
 const moreReviews = ({ id, title, url, rating, review }) => {
   return `
-  <div class="col s12 m3">
+  <div class="item col s12 m6 l3">
     <div class="card hoverable" data-id="${ id }">
       <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="${ url }" alt="${title }">
+        <img class="activator" src="${ url }" alt="${ title }">
       </div>
       <div class="card-content">
         <span class="card-title activator">${ title }<i class="material-icons right">more_vert</i></span>
@@ -117,43 +131,72 @@ const moreReviews = ({ id, title, url, rating, review }) => {
 
 const collection = ({ id, title, url, rating, review }) => {
   return `
-    <li class="collection-item avatar row" data-id="${ id }">
-      <div class="col s12 m1">
-        <img src="${ url}" alt="${title }">
+    <div class="collection-item row" data-id="${ id }">
+      <div class="valign-wrapper col s12 m2">
+        <img src="${ url }" alt="${ title }">
       </div>
       <div class="details col s12 m9">
-        <span class="title">${ title }</span>
-        <p>${ review }</p>
+        <h4>${ title }</h4>
         <p>${ starRating(rating) }</p>
+        <p>${ review.slice(0, 200) }...</p>
       </div>
+      <a class="btn waves-effect waves-light green detail">Details</a>
       <a class="btn waves-effect waves-light indigo edit">Edit</a>
       <a class="btn waves-effect waves-light red delete">Delete</a>
-    </li>
+    </div>
   `
 }
 
-const editRating = ({ id, title, url, rating, review }) => {
+const one = ({ id, title, url, rating, review }) => {
   return `
-    <article class="post" data-id="${ id }">
-      <form class="form">
-        <div class="field">
-          <label for="title" class="label is-1">Title (60 chars. max):
-            <input id="title" class="input post-title" type="text" name="title" value="${ title }" required>
-          </label>
-          <label for="author" class="label is-1">Author (30 chars. max):
-            <input id="author" class="input author" type="text" name="author" value="${ author }" required>
-          </label>
-          <label for="edit-article" class="label is-1"> Content:
-            <textarea id="edit-article" name="article" class="textarea post-body" required>${ content }</textarea>
-          </label>
-          <div class="control">
-            <input type="submit" class="edit button is-link" value="Update Post">
-            <input type="button" class="cancel button is-link" value="Nevermind!">
-          </div>
-          <hr>
+    <div class="row" data-id="${ id }">
+      <div class="valign-wrapper col s12 m4">
+        <img class="z-depth-1" src="${ url }" alt="${ title }">
+      </div>
+      <div class="col s12 m8">
+        <h3>${ title }</h3>
+        <p>${ starRating(rating) }</p>
+        <p>${ review }</p>
+        <a class="btn waves-effect waves-light green" href="./ratings.html">Back to Ratings</a>
+      </div>
+    </div>
+  `
+}
+
+const editReview = ({ id, title, url, rating, review }) => {
+  return `
+    <div class="editing" data-id=${ id }>
+      <div class="comic-image col s12 m5"><img src="${ url }" alt="${ title }"></div>
+      <form id="edit-form" class="form col s12 m7">
+        <h3>Editing ${ title }</h3>
+
+        <div class="input-field">
+          <label for="comic_title">Title</label>
+          <input id="comic_title" type="text" data-length="50" class="validate" value="${ title }" required>
+          <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
+        </div>
+
+        <div class="input-field">
+          <input id="image_url" type="url" pattern="(http:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
+          <label for="image_url">Image URL</label>
+          <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
+        </div>
+
+        <div class="input-field">
+          <input id="review" type="number" data-length="1" class="validate" value="${ rating }" required>
+          <label for="review">Rating</label>
+        </div>
+
+        <div class="input-field">
+          <textarea id="comment" class="materialize-textarea" data-length="1000" required>${ review }</textarea>
+          <label for="comment">Rating Comment/Review</label>
+        </div>
+
+        <div class="input-field">
+          <input class="btn indigo" type="submit">
         </div>
       </form>
-    </article>
+    </div>
   `
 }
 
@@ -164,5 +207,6 @@ module.exports = {
   carouselCover,
   moreReviews,
   collection,
-  editRating
+  one,
+  editReview
 }

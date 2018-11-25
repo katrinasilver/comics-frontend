@@ -5068,39 +5068,27 @@ input[type=range]::-ms-thumb {
 /** heading size function **/
 h1 {
   color: #32408f;
-  font: 4rem "Bangers", sans-serif;
-  line-height: 4.6rem;
-  text-shadow: 2px 2px 0px #abb4e2; }
+  font: 4rem "Bangers", sans-serif; }
 
 h2 {
   color: #32408f;
-  font: 3.4rem "Bangers", sans-serif;
-  line-height: 4.6rem;
-  text-shadow: 2px 2px 0px #abb4e2; }
+  font: 3.4rem "Bangers", sans-serif; }
 
 h3 {
   color: #32408f;
-  font: 2.8rem "Bangers", sans-serif;
-  line-height: 4.6rem;
-  text-shadow: 2px 2px 0px #abb4e2; }
+  font: 2.8rem "Bangers", sans-serif; }
 
 h4 {
   color: #32408f;
-  font: 2.2rem "Bangers", sans-serif;
-  line-height: 4.6rem;
-  text-shadow: 2px 2px 0px #abb4e2; }
+  font: 2.2rem "Bangers", sans-serif; }
 
 h5 {
   color: #32408f;
-  font: 1.6rem "Bangers", sans-serif;
-  line-height: 4.6rem;
-  text-shadow: 2px 2px 0px #abb4e2; }
+  font: 1.6rem "Bangers", sans-serif; }
 
 h6 {
   color: #32408f;
-  font: 1rem "Bangers", sans-serif;
-  line-height: 4.6rem;
-  text-shadow: 2px 2px 0px #abb4e2; }
+  font: 1rem "Bangers", sans-serif; }
 
 /** Custom Styles **/
 header .brand-logo {
@@ -5112,11 +5100,13 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url("./../images/covers.jpg") repeat;
   background-position: 0 auto;
   background-size: 0/100% auto;
-  font-family: "Nunito", sans-serif;
-  min-height: 100vh; }
+  font-family: "Nunito", sans-serif; }
+  body .container {
+    min-height: 80vh; }
   body.scroller {
     animation: backgroundScroll 60s linear infinite alternate; }
 
+/* Homepage */
 .carousel {
   margin: 3rem auto;
   overflow: visible;
@@ -5158,60 +5148,79 @@ body {
   margin-bottom: 0;
   padding-top: 1rem; }
   .reviews .more-reviews {
-    align-items: flex-end;
+    align-items: flex-start;
     display: flex;
-    flex-wrap: wrap; }
+    flex-flow: row wrap;
+    justify-content: left; }
   .reviews h3 {
     background: #e4e7f6;
     line-height: 4rem;
     text-align: center; }
 
+/* New Rating */
 .add-rating {
   margin: 2rem auto;
   min-height: 80vh; }
   .add-rating .form {
     padding: 2rem; }
+    .add-rating .form label {
+      margin: .5rem .5rem 0 0; }
+  .add-rating input[type="radio"] + span {
+    text-align: center; }
+    .add-rating input[type="radio"] + span:before, .add-rating input[type="radio"] + span:after {
+      display: none; }
+  .add-rating input[type="radio"]:not(:checked) + span {
+    padding: 0; }
+  .add-rating input[type="radio"]:checked + span {
+    padding: 0; }
+    .add-rating input[type="radio"]:checked + span i {
+      color: #3f51b5; }
 
+/* Current Ratings */
+.collection {
+  margin-top: 2rem; }
+  .collection .details {
+    margin-right: 1rem; }
+  .collection a.btn, .collection a.btn-large, .collection a.btn-small {
+    display: inline-block;
+    margin: .5rem auto 1rem;
+    min-width: 95px; }
+
+/* Edit Ratings */
+.editing {
+  padding-right: 1rem; }
+
+/* Utilities */
 .notice {
   padding: .5rem;
   transition: all 0.3s ease; }
 
 .hidden {
+  opacity: 0;
   transition: all 0.3s ease;
   visibility: hidden; }
 
-.btn.edit, .edit.btn-large, .edit.btn-small, .btn.delete, .delete.btn-large, .delete.btn-small {
-  margin-left: .5rem; }
+img {
+  width: 100%;
+  height: auto; }
+  .card.horizontal .card-image img {
+    max-width: 300px;
+    height: 400px; }
+  .collection img {
+    margin: 2rem auto 1rem; }
+  .collection-item img {
+    max-width: 130px; }
+  .editing img,
+  .add-rating img {
+    padding: 2rem 1rem 1.5rem; }
 
-.card.horizontal .card-image img {
-  max-width: 300px;
-  height: 400px; }
-
-.more-reviews img {
-  width: 100%; }
-
-.collection-item img {
-  width: auto;
-  max-height: 120px; }
-
-.add-rating img {
-  padding: 2rem 1rem 1.5rem; }
-
-.collection {
-  margin-top: 2rem; }
-  .collection .collection-item.avatar {
-    display: flex;
-    padding: 1rem; }
-    .collection .collection-item.avatar .title {
-      color: #3f51b5;
-      font: 1.75rem "Bangers", sans-serif; }
-    .collection .collection-item.avatar p {
-      margin: .5rem 0; }
-
-.card-action .material-icons,
-.nav-wrapper a .material-icons {
-  display: inline-block;
+.material-icons {
   vertical-align: top; }
+  .add-rating .material-icons {
+    display: block; }
+  .card-action .material-icons,
+  .nav-wrapper a .material-icons {
+    display: inline-block; }
 
 .page-footer {
   padding-top: 0; }

@@ -19,8 +19,6 @@ $heading-scale: .6;
   h#{$i} {
     color: darken($indigo, 10);
     font: $base-font-size + $heading-scale * (6 - $i) $headline;
-    line-height: $base-font-size + $heading-scale * (6);
-    text-shadow: 2px 2px 0px lighten($indigo, 30);
   }
 }
 
@@ -40,13 +38,16 @@ body {
   background-position: 0 auto;
   background-size: 0/100% auto;
   font-family: $bodyFont;
-  min-height: 100vh;
+
+  .container {
+    min-height: 80vh;
+  }
 
   &.scroller {
     animation: backgroundScroll 60s linear infinite alternate;
   }
 }
-
+/* Homepage */
 .carousel {
   margin: 3rem auto;
   overflow: visible;
@@ -103,9 +104,10 @@ body {
   padding-top: 1rem;
 
   .more-reviews {
-    align-items: flex-end;
+    align-items: flex-start;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: left;
   }
 
   h3 {
@@ -115,79 +117,108 @@ body {
   }
 }
 
+/* New Rating */
 .add-rating {
   margin: 2rem auto;
   min-height: 80vh;
 
   .form {
     padding: 2rem;
+
+    label {
+      margin: .5rem .5rem 0 0;
+    }
+  }
+
+  input[type="radio"] {
+
+    + span {
+      text-align: center;
+
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+
+    &:not(:checked) + span {
+      padding: 0;
+    }
+
+    &:checked + span {
+      padding: 0;
+
+      i {
+        color: $indigo
+      }
+    }
   }
 }
 
+/* Current Ratings */
+.collection {
+  margin-top: 2rem;
+
+  .details {
+    margin-right: 1rem;
+  }
+
+  a.btn {
+    display: inline-block;
+    margin: .5rem auto 1rem;
+    min-width: 95px;
+  }
+}
+
+/* Edit Ratings */
+.editing {
+  padding-right: 1rem;
+}
+
+/* Utilities */
 .notice {
   padding: .5rem;
   transition: $transition;
 }
 
 .hidden {
+  opacity: 0;
   transition: $transition;
   visibility: hidden;
 }
 
-.btn {
-
-  &.edit,
-  &.delete {
-    margin-left: .5rem;
-  }
-}
-
 img {
+  width: 100%;
+  height: auto;
 
   .card.horizontal .card-image & {
     max-width: 300px;
     height: 400px;
   }
 
-  .more-reviews & {
-    width: 100%;
+  .collection & {
+    margin: 2rem auto 1rem;
   }
 
   .collection-item & {
-    width: auto;
-    max-height: 120px;
+    max-width: 130px;
   }
 
+  .editing &,
   .add-rating & {
     padding: 2rem 1rem 1.5rem;
   }
 }
 
-.collection {
-  margin-top: 2rem;
-
-  .collection-item.avatar {
-    display: flex;
-    padding: 1rem;
-
-    .title {
-      color: $indigo;
-      font: 1.75rem $headline;
-    }
-
-    p {
-      margin: .5rem 0;
-    }
-  }
-
-}
-
 .material-icons {
+  vertical-align: top;
 
+  .add-rating & {
+    display: block;
+  }
   .card-action &,
   .nav-wrapper a & {
     display: inline-block;
-    vertical-align: top;
   }
 }
 
