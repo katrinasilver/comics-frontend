@@ -14,12 +14,13 @@ const renderHomepage = (container, reviews) => {
   let carouselItems = reviews.map(r => carouselCover(r))
   container.innerHTML = ''
   container.innerHTML = carouselItems.reverse().slice(0, 5).join('\n')
-  M.Carousel.init(container)
 
   const review = document.querySelector('.more-reviews')
   let reviewContents = reviews.map(r => moreReviews(r))
   review.innerHTML = ''
   review.innerHTML = reviewContents.reverse().slice(5).join('\n')
+
+  setTimeout(() => { M.Carousel.init(container) }, 1000)
 }
 
 const renderRatings = (container, reviews) => {
@@ -53,7 +54,7 @@ const renderRatings = (container, reviews) => {
       .then(reset)
       .then(read)
       .then(response => renderRatings(container, response.data))
-    // .catch(error => notify('.notice', 'exceeded character limit', 2000))
+      .catch(error => error)
   })
 
   eventListener('.delete', 'click', (e) => {
