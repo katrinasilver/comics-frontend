@@ -5067,27 +5067,27 @@ input[type=range]::-ms-thumb {
 /** Custom Variables **/
 /** heading size function **/
 h1 {
-  color: #32408f;
+  color: #3f51b5;
   font: 4rem "Bangers", sans-serif; }
 
 h2 {
-  color: #32408f;
+  color: #3f51b5;
   font: 3.4rem "Bangers", sans-serif; }
 
 h3 {
-  color: #32408f;
+  color: #3f51b5;
   font: 2.8rem "Bangers", sans-serif; }
 
 h4 {
-  color: #32408f;
+  color: #3f51b5;
   font: 2.2rem "Bangers", sans-serif; }
 
 h5 {
-  color: #32408f;
+  color: #3f51b5;
   font: 1.6rem "Bangers", sans-serif; }
 
 h6 {
-  color: #32408f;
+  color: #3f51b5;
   font: 1rem "Bangers", sans-serif; }
 
 /** Custom Styles **/
@@ -5097,7 +5097,7 @@ header .brand-logo {
   text-shadow: 3px 3px 0px #252f69; }
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url("./../images/covers.jpg") repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("./../images/covers.jpg") repeat;
   background-position: 0 auto;
   background-size: 0/100% auto;
   font-family: "Nunito", sans-serif; }
@@ -5109,8 +5109,7 @@ body {
 /* Homepage */
 .carousel {
   margin: 3rem auto;
-  overflow: visible;
-  perspective: 300px; }
+  overflow: visible; }
   .carousel .card:first-child:before {
     background: #F44336;
     border: 3px solid #ba160a;
@@ -5122,24 +5121,29 @@ body {
     left: -10px;
     padding: .5rem .75rem;
     position: absolute;
-    bottom: 30px;
+    bottom: 50px;
     z-index: 1000; }
   .carousel .carousel-item {
     height: auto;
-    max-width: 50%;
-    width: 100%; }
+    width: auto; }
     .carousel .carousel-item .rating {
-      border: 3px solid #d2190b;
-      bottom: auto;
-      top: -28px;
-      font: 1.5rem "Bangers", sans-serif;
-      line-height: 3.5rem; }
+      border: 3px solid #357a38;
+      bottom: 45px;
+      font: 1.75rem "Bangers", sans-serif;
+      height: 60px;
+      line-height: 3.5rem;
+      right: -10px;
+      width: 60px; }
 
 .card .card-title {
   font: 1.5rem "Bangers", sans-serif;
   color: #3f51b5; }
   .carousel .card .card-title {
     font-size: 2rem; }
+
+.more-reviews .card .card-image {
+  max-height: 350px;
+  overflow: hidden; }
 
 .card .card-stack {
   width: 100%; }
@@ -5201,25 +5205,26 @@ body {
   visibility: hidden; }
 
 img {
-  width: 100%;
-  height: auto; }
-  .card.horizontal .card-image img {
-    max-width: 300px;
-    height: 400px; }
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%; }
+  .card .card-image img {
+    height: auto;
+    max-height: 460px;
+    max-width: 300px; }
   .collection img {
     margin: 2rem auto 1rem; }
   .collection-item img {
     max-width: 130px; }
-  .editing img,
-  .add-rating img {
+  .editing img, .add-rating img {
     padding: 2rem 1rem 1.5rem; }
 
 .material-icons {
   vertical-align: top; }
   .add-rating .material-icons {
     display: block; }
-  .card-action .material-icons,
-  .nav-wrapper a .material-icons {
+  .card-action .material-icons, .nav-wrapper a .material-icons {
     display: inline-block; }
 
 .page-footer {

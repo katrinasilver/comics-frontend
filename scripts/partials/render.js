@@ -13,19 +13,18 @@ bottom.innerHTML = footer()
 const renderHomepage = (container, reviews) => {
   let carouselItems = reviews.map(r => carouselCover(r))
   container.innerHTML = ''
-  container.innerHTML = carouselItems.reverse().slice(0, 3).join('\n')
+  container.innerHTML = carouselItems.reverse().slice(0, 5).join('\n')
+  M.Carousel.init(container)
 
   const review = document.querySelector('.more-reviews')
   let reviewContents = reviews.map(r => moreReviews(r))
   review.innerHTML = ''
-  review.innerHTML = reviewContents.reverse().slice(3).join('\n')
-
-  M.Carousel.init(container)
+  review.innerHTML = reviewContents.reverse().slice(5).join('\n')
 }
 
 const renderRatings = (container, reviews) => {
-  let collected = reviews.map(r => collection(r)).reverse()
   // let collected = reviews.map(r => r.id === get() ? editReview(r) : collection(r)).reverse()
+  let collected = reviews.map(r => collection(r)).reverse()
   container.innerHTML = ''
   container.innerHTML = collected.join('\n')
 
@@ -35,25 +34,27 @@ const renderRatings = (container, reviews) => {
     readOne(id).then(response => container.innerHTML = one(response.data))
   })
 
+  eventListener('.edit', 'click', (e) => {
+    e.preventDefault()
+    let id = e.target.parentElement.getAttribute('data-id')
+    readOne(id).then(response => container.innerHTML = editReview(response.data))
+  })
+
   eventListener('#edit-form', 'submit', (e) => {
     e.preventDefault()
     const id = e.target.parentElement.getAttribute('data-id')
     const title = e.target.comic_title.value
     const url = e.target.image_url.value
-    const rating = e.target.review.value
+    const rating = e.target.rating.value
     const review = e.target.comment.textContent
+    console.log(`this function is firing`)
 
-    update(id, title, url, rating, review)
-      .then((response) => {
-        reset()
-        return read()
-      })
-      .then(response => renderRatings(response.data))
-    console.log(`this function is firing`);
-    // read().then(response => renderRatings(collections, response.data))
+    update({ id, title, url, rating, review })
+      .then(reset)
+      .then(read)
+      .then(response => renderRatings(container, response.data))
     // .catch(error => notify('.notice', 'exceeded character limit', 2000))
   })
-
 
   eventListener('.delete', 'click', (e) => {
     e.preventDefault()

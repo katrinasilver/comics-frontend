@@ -20,8 +20,7 @@ const header = () => {
           </li>
         </ul>
       </div>
-    </nav>
-  `
+    </nav>`
 }
 
 const footer = () => {
@@ -30,8 +29,7 @@ const footer = () => {
       <p>
         <strong>&copy; 2018 ComicScore</strong> by <a href="https://katrina.surge.sh" target="_blank">Katrina Agustin</a>
       </p>
-    </div>
-  `
+    </div>`
 }
 
 const form = () => {
@@ -76,7 +74,7 @@ const form = () => {
       </label>
 
       <div class="input-field">
-        <textarea id="review_comment" class="materialize-textarea" data-length="1000" required></textarea>
+        <textarea id="review_comment" class="materialize-textarea" rows="5" required></textarea>
         <label for="review_comment">Rating Comment/Review</label>
       </div>
 
@@ -85,28 +83,17 @@ const form = () => {
         <input class="reset btn red" type="reset">
       </div>
       <p class="hidden notice teal white-text center-align"></p>
-    </form>
-  `
+    </form>`
 }
 
 const carouselCover = ({ id, title, url, rating, review }) => {
   return `
-    <div class="card horizontal carousel-item" data-id=${ id }>
+    <div class="card carousel-item" data-id=${ id }>
       <div class="card-image">
         <img src="${ url }" alt="${ title }">
       </div>
-      <div class="card-stack">
-        <div class="card-content white">
-        <span class="card-title activator">${ title }</span>
-        </div>
-        <div class="card-action">
-          <span class="rating red btn-floating btn-large halfway-fab">${ rating }/5</span>
-          <p>${ review.slice(0, 150) }... <a href="./ratings.html" class="red-text">Learn More</a></p>
-
-        </div>
-      </div>
-    </div>
-  `
+      <span class="rating green btn-floating btn-large halfway-fab">${ rating }/5</span>
+    </div>`
 }
 
 const moreReviews = ({ id, title, url, rating, review }) => {
@@ -117,16 +104,14 @@ const moreReviews = ({ id, title, url, rating, review }) => {
         <img class="activator" src="${ url }" alt="${ title }">
       </div>
       <div class="card-content">
-        <span class="card-title activator">${ title }<i class="material-icons right">more_vert</i></span>
-        <p>${ starRating(rating) }</p>
+        <span class="card-title activator">${ starRating(rating) }<i class="material-icons right">more_vert</i></span>
       </div>
       <div class="card-reveal">
-        <span class="card-title">The Verdict<i class="material-icons right">close</i></span>
+        <span class="card-title">${ title } <i class="material-icons indigo-text right">close</i></span>
         <p>${ review }</p>
       </div>
     </div>
-
-    </div>`
+  </div>`
 }
 
 const collection = ({ id, title, url, rating, review }) => {
@@ -143,8 +128,7 @@ const collection = ({ id, title, url, rating, review }) => {
       <a class="btn waves-effect waves-light green detail">Details</a>
       <a class="btn waves-effect waves-light indigo edit">Edit</a>
       <a class="btn waves-effect waves-light red delete">Delete</a>
-    </div>
-  `
+    </div>`
 }
 
 const one = ({ id, title, url, rating, review }) => {
@@ -159,8 +143,7 @@ const one = ({ id, title, url, rating, review }) => {
         <p>${ review }</p>
         <a class="btn waves-effect waves-light green" href="./ratings.html">Back to Ratings</a>
       </div>
-    </div>
-  `
+    </div>`
 }
 
 const editReview = ({ id, title, url, rating, review }) => {
@@ -172,23 +155,23 @@ const editReview = ({ id, title, url, rating, review }) => {
 
         <div class="input-field">
           <label for="comic_title">Title</label>
-          <input id="comic_title" type="text" data-length="50" class="validate" value="${ title }" required>
+          <input id="comic_title" name="comic_title" type="text" data-length="50" class="validate" value="${ title }" required>
           <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
         </div>
 
         <div class="input-field">
-          <input id="image_url" type="url" pattern="(http:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
+          <input id="image_url" name="image_url" type="url" pattern="(http:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
           <label for="image_url">Image URL</label>
           <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
         </div>
 
         <div class="input-field">
-          <input id="review" type="number" data-length="1" class="validate" value="${ rating }" required>
-          <label for="review">Rating</label>
+          <input id="rating" name="rating" type="number" data-length="1" class="validate" value="${ rating }" required>
+          <label for="rating">Rating</label>
         </div>
 
         <div class="input-field">
-          <textarea id="comment" class="materialize-textarea" data-length="1000" required>${ review }</textarea>
+          <textarea id="comment" name="comment" class="materialize-textarea" rows="5" required>${ review }</textarea>
           <label for="comment">Rating Comment/Review</label>
         </div>
 
@@ -196,8 +179,7 @@ const editReview = ({ id, title, url, rating, review }) => {
           <input class="btn indigo" type="submit">
         </div>
       </form>
-    </div>
-  `
+    </div>`
 }
 
 module.exports = {
