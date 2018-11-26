@@ -5188,7 +5188,7 @@ body {
   .collection a.btn, .collection a.btn-large, .collection a.btn-small {
     display: inline-block;
     margin: .5rem auto 1rem;
-    min-width: 95px; }
+    width: 90px; }
 
 /* Edit Ratings */
 .editing {

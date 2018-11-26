@@ -1,6 +1,6 @@
 # ComicScore Front-end
 
-ComicScore is a rating site for Comics connected to a [database](https://github.com/katrinasilver/comics-backend).
+ComicScore is a fully-responsive rating site for Comics connected to a [database](https://github.com/katrinasilver/comics-backend).
 
 # How to use
 

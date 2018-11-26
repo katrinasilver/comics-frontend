@@ -34,9 +34,6 @@ const footer = () => {
 
 const form = () => {
   return `
-    <div class="comic-image valign-wrapper col s12 m5">
-      <img src="https://imgplaceholder.com/450x600/ffffff/eeeeee/fa-image" alt="Cover Image">
-    </div>
     <form id="form" class="form col s12 m7">
       <h3>Love it? Hate it? Rate it!</h3>
 
@@ -47,7 +44,7 @@ const form = () => {
       </div>
 
       <div class="input-field">
-        <input id="image_url" type="url" pattern="(http:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" required>
+        <input id="image_url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" required>
         <label for="image_url">Image URL</label>
         <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
       </div>
@@ -83,7 +80,10 @@ const form = () => {
         <input class="reset btn red" type="reset">
       </div>
       <p class="hidden notice teal white-text center-align"></p>
-    </form>`
+    </form>
+    <div class="comic-image valign-wrapper col s12 m5">
+      <img src="https://imgplaceholder.com/450x600/ffffff/eeeeee/fa-image" alt="Cover Image">
+    </div>`
 }
 
 const carouselCover = ({ id, title, url, rating, review }) => {
@@ -141,7 +141,7 @@ const one = ({ id, title, url, rating, review }) => {
         <h3>${ title }</h3>
         <p>${ starRating(rating) }</p>
         <p>${ review }</p>
-        <a class="btn waves-effect waves-light green" href="./ratings.html">Back to Ratings</a>
+        <a class="btn waves-effect waves-light green" href="./ratings.html">Back</a>
       </div>
     </div>`
 }
@@ -149,7 +149,6 @@ const one = ({ id, title, url, rating, review }) => {
 const editReview = ({ id, title, url, rating, review }) => {
   return `
     <div class="editing" data-id=${ id }>
-      <div class="comic-image col s12 m5"><img src="${ url }" alt="${ title }"></div>
       <form id="edit-form" class="form col s12 m7">
         <h3>Editing ${ title }</h3>
 
@@ -160,7 +159,7 @@ const editReview = ({ id, title, url, rating, review }) => {
         </div>
 
         <div class="input-field">
-          <input id="image_url" name="image_url" type="url" pattern="(http:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
+          <input id="image_url" name="image_url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
           <label for="image_url">Image URL</label>
           <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
         </div>
@@ -179,6 +178,7 @@ const editReview = ({ id, title, url, rating, review }) => {
           <input class="btn indigo" type="submit">
         </div>
       </form>
+      <div class="comic-image col s12 m5"><img src="${ url}" alt="${title }"></div>
     </div>`
 }
 
