@@ -1,5 +1,5 @@
 const { renderHomepage, renderEdits, renderRatings, addForm, swapImg } = require('./partials/render')
-const { create, read } = require('./partials/reviews')
+const { create, read, readOne } = require('./partials/reviews')
 const { notify, eventListener } = require('./partials/utils')
 
 const collections = document.querySelector('.collection')
@@ -29,6 +29,6 @@ eventListener('#form', 'submit', (e) => {
   eventListener('.reset', 'click', () => window.location.reload(true))
 })
 
-if (comic) read().then(() => renderEdits(comic))
+if (comic) readOne(window.location.search.slice(-1)).then(() => renderEdits(comic))
 if (carousel) read().then(response => renderHomepage(carousel, response.data))
 if (collections) read().then(response => renderRatings(collections, response.data))

@@ -166,23 +166,23 @@ const editReview = ({ id, title, url, rating, review }) => {
       </div>
 
       <label>
-        <input name="ratings" value="5" type="radio" checked/>
+        <input name="ratings" value="5" type="radio" ${ rating === 5 ? 'checked' : ''}/>
         <span> <i class="medium material-icons">sentiment_very_satisfied</i> Love It!</span>
       </label>
       <label>
-        <input name="ratings" value="4" type="radio"/>
+        <input name="ratings" value="4" type="radio" ${ rating === 4 ? 'checked' : ''}/>
         <span> <i class="medium material-icons">sentiment_satisfied</i> Good</span>
       </label>
       <label>
-        <input name="ratings" value="3" type="radio"/>
+        <input name="ratings" value="3" type="radio" ${ rating === 3 ? 'checked' : ''}/>
         <span> <i class="medium material-icons">sentiment_neutral</i> Okay</span>
       </label>
       <label>
-        <input name="ratings" value="2" type="radio"/>
+        <input name="ratings" value="2" type="radio" ${ rating === 2 ? 'checked' : ''}/>
         <span> <i class="medium material-icons">sentiment_dissatisfied</i> Meh...</span>
       </label>
       <label>
-        <input name="ratings" value="1" type="radio"/>
+        <input name="ratings" value="1" type="radio" ${ rating === 1 ? 'checked' : ''}/>
         <span> <i class="medium material-icons">sentiment_very_dissatisfied</i> Hate It!</span>
       </label>
       <div class="input-field">

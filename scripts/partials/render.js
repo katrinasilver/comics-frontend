@@ -52,11 +52,11 @@ const renderEdits = (container) => {
 
   readOne(params.id)
     .then(response => {
-      container.innerHTML = response.data.map(d => one(d)).join('\n')
+      container.innerHTML = one(response.data)
 
       eventListener('.edit', 'click', (e) => {
         e.preventDefault()
-        container.innerHTML = response.data.map(d => editReview(d)).join('\n')
+        container.innerHTML = editReview(response.data)
 
         swapImg('.comic-image img')
 
