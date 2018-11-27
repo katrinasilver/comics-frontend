@@ -90,7 +90,9 @@ const carouselCover = ({ id, title, url, rating, review }) => {
   return `
   <div class="card carousel-item" data-id=${ id }>
     <div class="card-image">
-      <img src="${ url }" alt="${ title }">
+      <a href=./review.html?id=${ id }>
+        <img src="${ url}" alt="${title }">
+      </a>
     </div>
     <span class="rating green btn-floating btn-large halfway-fab">${ rating }/5</span>
   </div>`
@@ -118,7 +120,9 @@ const collection = ({ id, title, url, rating, review }) => {
   return `
     <div class="collection-item row" data-id="${ id }">
       <div class="valign-wrapper col s12 m2">
-        <img src="${ url }" alt="${ title }">
+        <a href=./review.html?id=${ id }>
+          <img src="${ url }" alt="${ title }">
+        </a>
       </div>
       <div class="details col s12 m9">
         <h4>${ title }</h4>
