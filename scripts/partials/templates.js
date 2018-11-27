@@ -2,25 +2,25 @@ const { starRating } = require('./utils')
 
 const header = () => {
   return `
-    <nav class="indigo">
-      <div class="nav-wrapper container">
-        <a href="/" class="brand-logo">
-          ComicScore
-        </a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li>
-            <a href="./ratings.html">
-              <i class="tiny material-icons">favorite</i> Ratings
-            </a>
-          </li>
-          <li>
-            <a href="./add-ratings.html">
-              <i class="tiny material-icons">add</i> Add New
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>`
+  <nav class="indigo">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">
+        ComicScore
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a href="./ratings.html">
+            <i class="tiny material-icons">favorite</i> Ratings
+          </a>
+        </li>
+        <li>
+          <a href="./add-ratings.html">
+            <i class="tiny material-icons">add</i> Add New
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>`
 }
 
 const footer = () => {
@@ -36,19 +36,16 @@ const form = () => {
   return `
     <form id="form" class="form col s12 m8">
       <h3>Love it? Hate it? Rate it!</h3>
-
       <div class="input-field">
         <input id="title" type="text" data-length="50" class="validate" required>
         <label for="title">Title</label>
         <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
       </div>
-
       <div class="input-field">
         <input id="image_url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" required>
         <label for="image_url">Image URL</label>
         <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
       </div>
-
       <label>
         <input name="ratings" value="5" type="radio" checked/>
         <span> <i class="medium material-icons">sentiment_very_satisfied</i> Love It!</span>
@@ -71,8 +68,8 @@ const form = () => {
       </label>
 
       <div class="input-field">
-        <textarea id="review_comment" class="materialize-textarea" rows="5" required></textarea>
-        <label for="review_comment">Rating Comment/Review</label>
+        <textarea id="review_comment" class="materialize-textarea" required></textarea>
+        <label for="review_comment">Rating Comments</label>
       </div>
 
       <div class="input-field">
@@ -119,20 +116,20 @@ const moreReviews = ({ id, title, url, rating, review }) => {
 
 const collection = ({ id, title, url, rating, review }) => {
   return `
-    <div class="collection-item row" data-id="${ id }">
-      <div class="valign-wrapper col s12 m2">
-        <a href="./review.html?id=${ id }">
-          <img src="${ url }" alt="${ title }">
-        </a>
-      </div>
-      <div class="details col s12 m9">
-        <h4>${ title }</h4>
-        <p>${ starRating(rating) }</p>
-        <p>${ review.slice(0, 100) }...</p>
-      </div>
-      <a href="./review.html?id=${ id }" class="btn waves-effect waves-light green detail">Details</a>
-      <a class="btn waves-effect waves-light red delete">Delete</a>
-    </div>`
+  <div class="collection-item row" data-id="${ id }">
+    <div class="valign-wrapper col s12 m2">
+      <a href="./review.html?id=${ id }">
+        <img src="${ url }" alt="${ title }">
+      </a>
+    </div>
+    <div class="details col s12 m9">
+      <h4>${ title }</h4>
+      <p>${ starRating(rating) }</p>
+      <p>${ review.slice(0, 100) }...</p>
+    </div>
+    <a href="./review.html?id=${ id }" class="btn waves-effect waves-light green detail">Details</a>
+    <a class="btn waves-effect waves-light red delete">Delete</a>
+  </div>`
 }
 
 const one = ({ id, title, url, rating, review }) => {
@@ -156,16 +153,15 @@ const editReview = ({ id, title, url, rating, review }) => {
   <div class="editing" data-id="${ id }">
     <form id="edit-form" class="form col s12 m8">
       <h4>Editing ${ title }</h4>
-
       <div class="input-field">
-        <label for="title">Title</label>
+        <span><label for="title">Title</label></span>
         <input id="title" name="title" type="text" data-length="50" class="validate" value="${ title }" required>
         <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
       </div>
 
       <div class="input-field">
-        <input id="url" name="url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
-        <label for="url">Image URL</label>
+        <span><label for="image_url">Image URL</label></span>
+        <input id="image_url" name="url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
         <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
       </div>
 
@@ -189,10 +185,9 @@ const editReview = ({ id, title, url, rating, review }) => {
         <input name="ratings" value="1" type="radio"/>
         <span> <i class="medium material-icons">sentiment_very_dissatisfied</i> Hate It!</span>
       </label>
-
       <div class="input-field">
+        <span><label for="review">Rating Comments</label></span>
         <textarea id="review" name="review" class="materialize-textarea" rows="5" required>${ review }</textarea>
-        <label for="review">Rating Comment/Review</label>
       </div>
       <div class="input-field">
         <input class="btn indigo waves-effect waves-light" type="submit">

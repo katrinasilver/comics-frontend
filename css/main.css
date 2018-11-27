@@ -5167,9 +5167,16 @@ body {
 .add-rating .form label {
   margin: .5rem .5rem 0 0; }
 
+.edit-comic .form textarea,
+.add-rating .form textarea {
+  height: auto; }
+
 .edit-comic input[type="radio"] + span,
 .add-rating input[type="radio"] + span {
   text-align: center; }
+  .edit-comic input[type="radio"] + span i,
+  .add-rating input[type="radio"] + span i {
+    display: block; }
   .edit-comic input[type="radio"] + span:before, .edit-comic input[type="radio"] + span:after,
   .add-rating input[type="radio"] + span:before,
   .add-rating input[type="radio"] + span:after {

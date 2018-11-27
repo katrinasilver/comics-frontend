@@ -2,12 +2,18 @@ const { header, footer, form, carouselCover, collection, one, editReview, moreRe
 const { notify, eventListener } = require('./utils')
 const { read, readOne, remove, update } = require('./reviews')
 
-const addForm = (container) => container.innerHTML = form()
-
 const nav = document.querySelector('header')
 const bottom = document.querySelector('footer')
 nav.innerHTML = header()
 bottom.innerHTML = footer()
+
+const addForm = (container) => container.innerHTML = form()
+
+const swapImg = (selector) =>
+  eventListener('#image_url', 'input', (e) => {
+    const img = document.querySelector(selector)
+    img.setAttribute('src', `${e.target.value}`)
+  })
 
 const renderHomepage = (container, reviews) => {
   let carouselItems = reviews.map(r => carouselCover(r))
@@ -47,14 +53,17 @@ const renderEdits = (container) => {
   readOne(params.id)
     .then(response => {
       container.innerHTML = response.data.map(d => one(d)).join('\n')
+
       eventListener('.edit', 'click', (e) => {
         e.preventDefault()
         container.innerHTML = response.data.map(d => editReview(d)).join('\n')
 
+        swapImg('.comic-image img')
+
         eventListener('#edit-form', 'submit', (e) => {
           e.preventDefault()
           const title = e.target.title.value
-          const url = e.target.url.value
+          const url = e.target.image_url.value
           const rating = e.target.ratings.value
           const review = e.target.review.value
 
@@ -72,5 +81,6 @@ module.exports = {
   renderHomepage,
   renderRatings,
   addForm,
-  renderEdits
+  renderEdits,
+  swapImg
 }

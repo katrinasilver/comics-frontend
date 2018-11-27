@@ -130,12 +130,19 @@ body {
 
   .form {
     label { margin: .5rem .5rem 0 0; }
+
+    textarea {
+      height: auto;
+    }
   }
 
   input[type="radio"] {
 
+
     + span {
       text-align: center;
+
+      i { display: block; }
 
       &:before, &:after { display: none; }
     }
