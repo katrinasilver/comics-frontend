@@ -5101,14 +5101,15 @@ body {
   background-position: 0 auto;
   background-size: 0/100% auto;
   font-family: "Nunito", sans-serif; }
-  body .container {
-    min-height: 80vh; }
+  body section.container {
+    margin: 1rem auto;
+    padding: 1.5rem 1rem; }
   body.scroller {
     animation: backgroundScroll 60s linear infinite alternate; }
 
 /* Homepage */
 .carousel {
-  margin: 3rem auto;
+  margin-bottom: 3rem;
   overflow: visible; }
   .carousel .card:first-child:before {
     background: #F44336;
@@ -5150,7 +5151,7 @@ body {
 
 .reviews {
   margin-bottom: 0;
-  padding-top: 1rem; }
+  padding: 0; }
   .reviews .more-reviews {
     align-items: flex-start;
     display: flex;
@@ -5162,37 +5163,30 @@ body {
     text-align: center; }
 
 /* New Rating */
-.add-rating {
-  margin: 2rem auto;
-  min-height: 80vh; }
-  .add-rating .form {
-    padding: 2rem; }
-    .add-rating .form label {
-      margin: .5rem .5rem 0 0; }
-  .add-rating input[type="radio"] + span {
-    text-align: center; }
-    .add-rating input[type="radio"] + span:before, .add-rating input[type="radio"] + span:after {
-      display: none; }
-  .add-rating input[type="radio"]:not(:checked) + span {
-    padding: 0; }
-  .add-rating input[type="radio"]:checked + span {
-    padding: 0; }
-    .add-rating input[type="radio"]:checked + span i {
-      color: #3f51b5; }
+.add-rating .form label {
+  margin: .5rem .5rem 0 0; }
+
+.add-rating input[type="radio"] + span {
+  text-align: center; }
+  .add-rating input[type="radio"] + span:before, .add-rating input[type="radio"] + span:after {
+    display: none; }
+
+.add-rating input[type="radio"]:not(:checked) + span {
+  padding: 0; }
+
+.add-rating input[type="radio"]:checked + span {
+  padding: 0; }
+  .add-rating input[type="radio"]:checked + span i {
+    color: #3f51b5; }
 
 /* Current Ratings */
-.collection {
-  margin-top: 2rem; }
-  .collection .details {
-    margin-right: 1rem; }
-  .collection a.btn, .collection a.btn-large, .collection a.btn-small {
-    display: inline-block;
-    margin: .5rem auto 1rem;
-    width: 90px; }
+.collection .details {
+  margin-right: 1rem; }
 
-/* Edit Ratings */
-.editing {
-  padding-right: 1rem; }
+.collection a.btn, .collection a.btn-large, .collection a.btn-small {
+  display: inline-block;
+  margin: .5rem auto 1rem;
+  width: 90px; }
 
 /* Utilities */
 .notice {
@@ -5211,14 +5205,11 @@ img {
   width: 100%; }
   .card .card-image img {
     height: auto;
-    max-height: 460px;
     max-width: 300px; }
-  .collection img {
-    margin: 2rem auto 1rem; }
+    .card .card-image img.activator {
+      max-width: 100%; }
   .collection-item img {
-    max-width: 130px; }
-  .editing img, .add-rating img {
-    padding: 2rem 1rem 1.5rem; }
+    max-width: 150px; }
 
 .material-icons {
   vertical-align: top; }

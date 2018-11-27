@@ -1,6 +1,5 @@
 const { header, footer, form, carouselCover, collection, one, editReview, moreReviews } = require('./templates')
 const { notify, eventListener } = require('./utils')
-const { get, set, reset } = require('./edit')
 const { read, readOne, remove, update } = require('./reviews')
 
 const addForm = (container) => container.innerHTML = form()
@@ -24,38 +23,9 @@ const renderHomepage = (container, reviews) => {
 }
 
 const renderRatings = (container, reviews) => {
-  // let collected = reviews.map(r => r.id === get() ? editReview(r) : collection(r)).reverse()
   let collected = reviews.map(r => collection(r)).reverse()
   container.innerHTML = ''
   container.innerHTML = collected.join('\n')
-
-  eventListener('.detail', 'click', (e) => {
-    e.preventDefault()
-    let id = e.target.parentElement.getAttribute('data-id')
-    readOne(id).then(response => container.innerHTML = one(response.data))
-  })
-
-  eventListener('.edit', 'click', (e) => {
-    e.preventDefault()
-    let id = e.target.parentElement.getAttribute('data-id')
-    readOne(id).then(response => container.innerHTML = editReview(response.data))
-  })
-
-  eventListener('#edit-form', 'submit', (e) => {
-    e.preventDefault()
-    const id = e.target.parentElement.getAttribute('data-id')
-    const title = e.target.comic_title.value
-    const url = e.target.image_url.value
-    const rating = e.target.rating.value
-    const review = e.target.comment.textContent
-    console.log(`this function is firing`)
-
-    update({ id, title, url, rating, review })
-      .then(reset)
-      .then(read)
-      .then(response => renderRatings(container, response.data))
-      .catch(error => error)
-  })
 
   eventListener('.delete', 'click', (e) => {
     e.preventDefault()
@@ -68,8 +38,46 @@ const renderRatings = (container, reviews) => {
   })
 }
 
+const renderEdits = (container) => {
+
+  const params = window.location.search.slice(1)
+    .split('&').map(e => e.split('='))
+    .reduce((i, e) => ({ ...i, [e[0]]: e[1] }), {})
+
+  console.log(`params`, params)
+
+  readOne(params.id)
+    .then(response => {
+      container.innerHTML = response.data.map(d => one(d)).join('\n')
+      eventListener('.edit', 'click', (e) => {
+        e.preventDefault()
+        container.innerHTML = response.data.map(d => editReview(d)).join('\n')
+
+        console.log(`params2`, params)
+
+        eventListener('#edit-form', 'submit', (e) => {
+          e.preventDefault()
+          const title = e.target.title.value
+          const url = e.target.url.value
+          const rating = e.target.rating.value
+          const review = e.target.review.textContent
+
+          console.log(`params3`, params)
+          console.log(`params`, response.data)
+
+          update(params.id, title, url, rating, review)
+          readOne(params.id)
+            .then(response => renderEdits(container, response.data))
+            .catch(error => error)
+        })
+      })
+    })
+    .catch(error => error)
+}
+
 module.exports = {
   renderHomepage,
   renderRatings,
-  addForm
+  addForm,
+  renderEdits
 }

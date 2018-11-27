@@ -34,7 +34,7 @@ const footer = () => {
 
 const form = () => {
   return `
-    <form id="form" class="form col s12 m7">
+    <form id="form" class="form col s12 m8">
       <h3>Love it? Hate it? Rate it!</h3>
 
       <div class="input-field">
@@ -81,19 +81,19 @@ const form = () => {
       </div>
       <p class="hidden notice teal white-text center-align"></p>
     </form>
-    <div class="comic-image valign-wrapper col s12 m5">
+    <div class="comic-image valign-wrapper col s12 m4">
       <img src="https://imgplaceholder.com/450x600/ffffff/eeeeee/fa-image" alt="Cover Image">
     </div>`
 }
 
 const carouselCover = ({ id, title, url, rating, review }) => {
   return `
-    <div class="card carousel-item" data-id=${ id }>
-      <div class="card-image">
-        <img src="${ url }" alt="${ title }">
-      </div>
-      <span class="rating green btn-floating btn-large halfway-fab">${ rating }/5</span>
-    </div>`
+  <div class="card carousel-item" data-id=${ id }>
+    <div class="card-image">
+      <img src="${ url }" alt="${ title }">
+    </div>
+    <span class="rating green btn-floating btn-large halfway-fab">${ rating }/5</span>
+  </div>`
 }
 
 const moreReviews = ({ id, title, url, rating, review }) => {
@@ -123,63 +123,63 @@ const collection = ({ id, title, url, rating, review }) => {
       <div class="details col s12 m9">
         <h4>${ title }</h4>
         <p>${ starRating(rating) }</p>
-        <p>${ review.slice(0, 200) }...</p>
+        <p>${ review.slice(0, 100) }...</p>
       </div>
-      <a class="btn waves-effect waves-light green detail">Details</a>
-      <a class="btn waves-effect waves-light indigo edit">Edit</a>
+      <a href="./review.html?id=${ id }"class="btn waves-effect waves-light green detail">Details</a>
       <a class="btn waves-effect waves-light red delete">Delete</a>
     </div>`
 }
 
 const one = ({ id, title, url, rating, review }) => {
   return `
-    <div class="row" data-id="${ id }">
-      <div class="valign-wrapper col s12 m4">
-        <img class="z-depth-1" src="${ url }" alt="${ title }">
-      </div>
-      <div class="col s12 m8">
-        <h3>${ title }</h3>
-        <p>${ starRating(rating) }</p>
-        <p>${ review }</p>
-        <a class="btn waves-effect waves-light green" href="./ratings.html">Back</a>
-      </div>
-    </div>`
+  <div class="row" data-id="${ id }">
+    <div class="valign-wrapper col s12 m4">
+      <img class="z-depth-1" src="${ url }" alt="${ title }">
+    </div>
+    <div class="col s12 m8">
+      <h3>${ title }</h3>
+      <p>${ starRating(rating) }</p>
+      <p>${ review }</p>
+      <a class="btn waves-effect waves-light indigo" href="./ratings.html">Back</a>
+      <a href="./review.html?id=${ id }" class="btn waves-effect waves-light green edit">Edit</a>
+    </div>
+  </div>`
 }
 
 const editReview = ({ id, title, url, rating, review }) => {
   return `
-    <div class="editing" data-id=${ id }>
-      <form id="edit-form" class="form col s12 m7">
-        <h3>Editing ${ title }</h3>
+  <div class="editing" data-cid=${ id }>
+    <form id="edit-form" class="form col s12 m8">
+      <h4>Editing ${ title }</h4>
 
-        <div class="input-field">
-          <label for="comic_title">Title</label>
-          <input id="comic_title" name="comic_title" type="text" data-length="50" class="validate" value="${ title }" required>
-          <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
-        </div>
+      <div class="input-field">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" data-length="50" class="validate" value="${ title }" required>
+        <span class="helper-text" data-error="oops! something is wrong..." data-success="looking good!">example: Amazing Spiderman #1</span>
+      </div>
 
-        <div class="input-field">
-          <input id="image_url" name="image_url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
-          <label for="image_url">Image URL</label>
-          <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
-        </div>
+      <div class="input-field">
+        <input id="url" name="url" type="url" pattern="^(http|https):([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)" class="validate" value="${ url }" required>
+        <label for="url">Image URL</label>
+        <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
+      </div>
 
-        <div class="input-field">
-          <input id="rating" name="rating" type="number" data-length="1" class="validate" value="${ rating }" required>
-          <label for="rating">Rating</label>
-        </div>
+      <div class="input-field">
+        <input id="rating" name="rating" type="number" data-length="1" class="validate" value="${ rating }" required>
+        <label for="rating">Rating</label>
+      </div>
 
-        <div class="input-field">
-          <textarea id="comment" name="comment" class="materialize-textarea" rows="5" required>${ review }</textarea>
-          <label for="comment">Rating Comment/Review</label>
-        </div>
-
-        <div class="input-field">
-          <input class="btn indigo" type="submit">
-        </div>
-      </form>
-      <div class="comic-image col s12 m5"><img src="${ url}" alt="${title }"></div>
-    </div>`
+      <div class="input-field">
+        <textarea id="review" name="review" class="materialize-textarea" rows="5" required>${ review }</textarea>
+        <label for="review">Rating Comment/Review</label>
+      </div>
+      <div class="input-field">
+        <input class="btn indigo waves-effect waves-light" type="submit">
+        <a class="btn waves-effect waves-light red" href="./ratings.html">Cancel</a>
+      </div>
+    </form>
+    <div class="comic-image col s12 m4"><img src="${ url }" alt="${ title }"></div>
+  </div>`
 }
 
 module.exports = {

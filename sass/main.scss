@@ -41,9 +41,10 @@ body {
   background-size: 0/100% auto;
   font-family: $bodyFont;
 
-  .container {
-    min-height: 80vh;
-  }
+  section.container {
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+}
 
   &.scroller {
     animation: backgroundScroll 60s linear infinite alternate;
@@ -107,7 +108,7 @@ body {
 
 .reviews {
   margin-bottom: 0;
-  padding-top: 1rem;
+  padding: 0;
 
   .more-reviews {
     align-items: flex-start;
@@ -125,12 +126,8 @@ body {
 
 /* New Rating */
 .add-rating {
-  margin: 2rem auto;
-  min-height: 80vh;
 
   .form {
-    padding: 2rem;
-
     label { margin: .5rem .5rem 0 0; }
   }
 
@@ -154,7 +151,6 @@ body {
 
 /* Current Ratings */
 .collection {
-  margin-top: 2rem;
 
   .details { margin-right: 1rem; }
 
@@ -164,9 +160,6 @@ body {
     width: 90px;
   }
 }
-
-/* Edit Ratings */
-.editing { padding-right: 1rem; }
 
 /* Utilities */
 .notice {
@@ -188,15 +181,15 @@ img {
 
   .card .card-image & {
     height: auto;
-    max-height: 460px;
     max-width: 300px;
+
+    &.activator {
+      max-width: 100%;
+    }
   }
 
-  .collection & { margin: 2rem auto 1rem; }
+  .collection-item & { max-width: 150px; }
 
-  .collection-item & { max-width: 130px; }
-
-  .editing &, .add-rating & { padding: 2rem 1rem 1.5rem; }
 }
 
 .material-icons {
