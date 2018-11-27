@@ -5163,19 +5163,26 @@ body {
     text-align: center; }
 
 /* New Rating */
+.edit-comic .form label,
 .add-rating .form label {
   margin: .5rem .5rem 0 0; }
 
+.edit-comic input[type="radio"] + span,
 .add-rating input[type="radio"] + span {
   text-align: center; }
-  .add-rating input[type="radio"] + span:before, .add-rating input[type="radio"] + span:after {
+  .edit-comic input[type="radio"] + span:before, .edit-comic input[type="radio"] + span:after,
+  .add-rating input[type="radio"] + span:before,
+  .add-rating input[type="radio"] + span:after {
     display: none; }
 
+.edit-comic input[type="radio"]:not(:checked) + span,
 .add-rating input[type="radio"]:not(:checked) + span {
   padding: 0; }
 
+.edit-comic input[type="radio"]:checked + span,
 .add-rating input[type="radio"]:checked + span {
   padding: 0; }
+  .edit-comic input[type="radio"]:checked + span i,
   .add-rating input[type="radio"]:checked + span i {
     color: #3f51b5; }
 

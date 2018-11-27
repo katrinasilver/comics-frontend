@@ -44,8 +44,6 @@ const renderEdits = (container) => {
     .split('&').map(e => e.split('='))
     .reduce((i, e) => ({ ...i, [e[0]]: e[1] }), {})
 
-  console.log(`params`, params)
-
   readOne(params.id)
     .then(response => {
       container.innerHTML = response.data.map(d => one(d)).join('\n')
@@ -53,17 +51,12 @@ const renderEdits = (container) => {
         e.preventDefault()
         container.innerHTML = response.data.map(d => editReview(d)).join('\n')
 
-        console.log(`params2`, params)
-
         eventListener('#edit-form', 'submit', (e) => {
           e.preventDefault()
           const title = e.target.title.value
           const url = e.target.url.value
-          const rating = e.target.rating.value
-          const review = e.target.review.textContent
-
-          console.log(`params3`, params)
-          console.log(`params`, response.data)
+          const rating = e.target.ratings.value
+          const review = e.target.review.value
 
           update(params.id, title, url, rating, review)
           readOne(params.id)

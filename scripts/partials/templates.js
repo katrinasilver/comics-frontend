@@ -51,7 +51,7 @@ const form = () => {
 
       <label>
         <input name="ratings" value="5" type="radio" checked/>
-        <span> <i class="medium material-icons">sentiment_very_satisfied</i> Great</span>
+        <span> <i class="medium material-icons">sentiment_very_satisfied</i> Love It!</span>
       </label>
       <label>
         <input name="ratings" value="4" type="radio"/>
@@ -67,7 +67,7 @@ const form = () => {
       </label>
       <label>
         <input name="ratings" value="1" type="radio"/>
-        <span> <i class="medium material-icons">sentiment_very_dissatisfied</i> Awful!</span>
+        <span> <i class="medium material-icons">sentiment_very_dissatisfied</i> Hate It!</span>
       </label>
 
       <div class="input-field">
@@ -88,10 +88,10 @@ const form = () => {
 
 const carouselCover = ({ id, title, url, rating, review }) => {
   return `
-  <div class="card carousel-item" data-id=${ id }>
+  <div class="card carousel-item" data-id="${ id }">
     <div class="card-image">
       <a href=./review.html?id=${ id }>
-        <img src="${ url}" alt="${title }">
+        <img src="${ url }" alt="${ title }">
       </a>
     </div>
     <span class="rating green btn-floating btn-large halfway-fab">${ rating }/5</span>
@@ -110,7 +110,8 @@ const moreReviews = ({ id, title, url, rating, review }) => {
       </div>
       <div class="card-reveal">
         <span class="card-title">${ title } <i class="material-icons indigo-text right">close</i></span>
-        <p>${ review }</p>
+        <p>${ review.slice(0, 100) }...</p>
+        <a href="./review.html?id=${ id }" class="btn waves-effect waves-light green detail">Read More</a>
       </div>
     </div>
   </div>`
@@ -120,7 +121,7 @@ const collection = ({ id, title, url, rating, review }) => {
   return `
     <div class="collection-item row" data-id="${ id }">
       <div class="valign-wrapper col s12 m2">
-        <a href=./review.html?id=${ id }>
+        <a href="./review.html?id=${ id }">
           <img src="${ url }" alt="${ title }">
         </a>
       </div>
@@ -129,7 +130,7 @@ const collection = ({ id, title, url, rating, review }) => {
         <p>${ starRating(rating) }</p>
         <p>${ review.slice(0, 100) }...</p>
       </div>
-      <a href="./review.html?id=${ id }"class="btn waves-effect waves-light green detail">Details</a>
+      <a href="./review.html?id=${ id }" class="btn waves-effect waves-light green detail">Details</a>
       <a class="btn waves-effect waves-light red delete">Delete</a>
     </div>`
 }
@@ -152,7 +153,7 @@ const one = ({ id, title, url, rating, review }) => {
 
 const editReview = ({ id, title, url, rating, review }) => {
   return `
-  <div class="editing" data-cid=${ id }>
+  <div class="editing" data-id="${ id }">
     <form id="edit-form" class="form col s12 m8">
       <h4>Editing ${ title }</h4>
 
@@ -168,10 +169,26 @@ const editReview = ({ id, title, url, rating, review }) => {
         <span class="helper-text" data-error="please use a valid image URL" data-success="looking good!"></span>
       </div>
 
-      <div class="input-field">
-        <input id="rating" name="rating" type="number" data-length="1" class="validate" value="${ rating }" required>
-        <label for="rating">Rating</label>
-      </div>
+      <label>
+        <input name="ratings" value="5" type="radio" checked/>
+        <span> <i class="medium material-icons">sentiment_very_satisfied</i> Love It!</span>
+      </label>
+      <label>
+        <input name="ratings" value="4" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_satisfied</i> Good</span>
+      </label>
+      <label>
+        <input name="ratings" value="3" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_neutral</i> Okay</span>
+      </label>
+      <label>
+        <input name="ratings" value="2" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_dissatisfied</i> Meh...</span>
+      </label>
+      <label>
+        <input name="ratings" value="1" type="radio"/>
+        <span> <i class="medium material-icons">sentiment_very_dissatisfied</i> Hate It!</span>
+      </label>
 
       <div class="input-field">
         <textarea id="review" name="review" class="materialize-textarea" rows="5" required>${ review }</textarea>
