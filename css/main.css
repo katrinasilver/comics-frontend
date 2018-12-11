@@ -5154,7 +5154,6 @@ body {
   padding: 0; }
   .reviews .more-reviews {
     align-items: flex-start;
-    display: flex;
     flex-flow: row wrap;
     justify-content: left; }
   .reviews h3 {

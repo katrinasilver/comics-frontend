@@ -191,8 +191,9 @@ const editReview = ({ id, title, url, rating, review }) => {
       </div>
       <div class="input-field">
         <input class="btn indigo waves-effect waves-light" type="submit">
-        <a class="btn waves-effect waves-light red" href="./ratings.html">Cancel</a>
+        <a class="btn waves-effect waves-light red" href="./review.html?id=${id}">Cancel</a>
       </div>
+      <p class="hidden notice teal white-text center-align"></p>
     </form>
     <div class="comic-image col s12 m4"><img src="${ url }" alt="${ title }"></div>
   </div>`

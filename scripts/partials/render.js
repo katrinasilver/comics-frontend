@@ -69,8 +69,10 @@ const renderEdits = (container) => {
 
           update(params.id, title, url, rating, review)
           readOne(params.id)
-            .then(response => renderEdits(container, response.data))
-            .catch(error => error)
+          .then(() => {
+            renderEdits(container, response.data)
+            window.location = `/review.html?id=${ params.id }`
+          })
         })
       })
     })
