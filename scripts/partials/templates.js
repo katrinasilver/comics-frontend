@@ -142,7 +142,7 @@ const one = ({ id, title, url, rating, review }) => {
       <h3>${ title }</h3>
       <p>${ starRating(rating) }</p>
       <p>${ review }</p>
-      <a class="btn waves-effect waves-light indigo" href="./ratings.html">Back</a>
+      <a class="btn waves-effect waves-light indigo" href="${ document.referrer }">Back</a>
       <a href="./review.html?id=${ id }" class="btn waves-effect waves-light green edit">Edit</a>
     </div>
   </div>`
